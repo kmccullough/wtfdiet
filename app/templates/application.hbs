@@ -1,5 +1,7 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+<header class="l-app__header">
+  <h1 class="l-app__heading">wtfdiet</h1>
+</header>
+<div class="l-app__content">
+  {{outlet}}
+</div>
+<Modal @modal={{this.model.modal}} @modalId={{this.model.modalId}} />

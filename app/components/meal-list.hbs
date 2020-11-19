@@ -1,0 +1,43 @@
+<div class="c-meal-list">
+  <div class="c-meal-list__header">
+    <h2 class="c-meal-list__heading">Meals</h2>
+    <div class="c-meal-list__header-actions">
+      <button type="button" class="c-meal-list__add-meal-action"
+        {{on "click" (open-modal "add-meal")}}>
+        Add Meal
+      </button>
+    </div>
+  </div>
+  <div class="c-meal-list__list">
+    {{#each @meals as |meal|}}
+      <div class="c-meal-list__meal">
+        <span class="c-meal-list__meal-name">{{meal.name}}</span>
+        <span class="c-meal-list__meal-actions">
+          <button type="button" class="c-meal-list__edit-meal-action"
+            {{on "click" (open-modal "edit-meal" meal.id)}}>
+            Edit Meal
+          </button>
+        </span>
+        <span class="c-meal-list__meal-tags"><MealTags @meal={{meal}} /></span>
+        <span class="c-meal-list__favorites">
+          <span class="c-meal-list__favorite
+          c-meal-list__favorite--kerry">K</span>
+          <span class="c-meal-list__favorite
+          c-meal-list__favorite--lorien">L</span>
+          <span class="c-meal-list__favorite
+          c-meal-list__favorite--lily">L</span>
+          <span class="c-meal-list__favorite
+          c-meal-list__favorite--joey">J</span>
+          <span class="c-meal-list__favorite
+          c-meal-list__favorite--arya">A</span>
+          <span class="c-meal-list__favorite
+          c-meal-list__favorite--harlow">H</span>
+          <span class="c-meal-list__favorite
+          c-meal-list__favorite--amelia">A</span>
+        <span class="c-meal-list__favorite">...</span>
+        </span>
+      </div>
+    {{/each}}
+  </div>
+</div>
+{{yield}}

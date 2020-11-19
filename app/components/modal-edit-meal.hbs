@@ -1,0 +1,27 @@
+<div class="c-modal-edit-meal c-modal-dialog">
+  <div class="c-modal-dialog__header">
+    <h3 class="c-modal-dialog__heading">Edit Meal</h3>
+    <div class="c-modal-dialog__heading-actions">
+      <button type="button" class="c-modal-dialog__close-action"
+        title="close dialog"
+        {{on "click" (close-modal)}}>
+        X
+      </button>
+    </div>
+  </div>
+  <div class="c-modal-dialog__content">
+    <label>
+      <span class="c-label__label">Meal Name:</span>
+      <Input @type="text" @value={{this.mealName}}/>
+    </label>
+    {{yield}}
+  </div>
+  <div class="c-modal-dialog__footer">
+    <div class="c-modal-dialog__footer-actions">
+      <button type="button" class="c-modal-edit-meal__save-action"
+        {{on "click" this.updateMeal}}>
+        Update Meal
+      </button>
+    </div>
+  </div>
+</div>

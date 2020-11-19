@@ -1,0 +1,24 @@
+@import '../mixins/positioning';
+@import '../variables';
+
+.l-app {
+  &__header {
+    padding: $l-app__header___padding-v 1rem;
+    border-bottom: $l-app__header___border-bottom-height solid #b73;
+    background-color: #ea6;
+    @include clearFix;
+  }
+
+  &__heading {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    text-transform: lowercase;
+    font-size: $l-app__heading___font-size;
+  }
+
+  &__content {
+    height: $l-app__content___height;
+    overflow: hidden;
+  }
+}

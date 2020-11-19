@@ -2,10 +2,13 @@
   "name": "wtfdiet",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for wtfdiet goes here",
-  "repository": "",
+  "description": "What the frick do I eat today?",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kmccullough/wtfdiet"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "Kerry McCullough <subone@subone.org> http://subone.org/",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -26,12 +29,14 @@
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^1.6.0",
+    "ember-cached-decorator-polyfill": "^0.1.0",
     "ember-cli": "~3.22.0",
     "ember-cli-app-version": "^4.0.0",
     "ember-cli-babel": "^7.22.1",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-htmlbars": "^5.3.1",
     "ember-cli-inject-live-reload": "^2.0.2",
+    "ember-cli-sass": "^10.0.1",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.0",
     "ember-data": "~3.22.0",
@@ -43,13 +48,14 @@
     "ember-resolver": "^8.0.2",
     "ember-source": "~3.22.0",
     "ember-template-lint": "^2.14.0",
-    "ember-welcome-page": "^4.0.0",
     "eslint": "^7.11.0",
     "eslint-plugin-ember": "^9.3.0",
     "eslint-plugin-node": "^11.1.0",
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
-    "qunit-dom": "^1.5.0"
+    "qunit-dom": "^1.5.0",
+    "sass": "^1.28.0",
+    "tracked-built-ins": "^1.0.2"
   },
   "engines": {
     "node": "10.* || >= 12"

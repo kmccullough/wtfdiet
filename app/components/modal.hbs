@@ -1,0 +1,10 @@
+{{#if this.modal}}
+  <div class="l-modal">
+    <div class="l-modal__mask">
+      <div class="l-modal__dialog">
+        {{component this.modal modalId=@modalId}}
+      </div>
+    </div>
+  </div>
+{{/if}}
+{{yield}}

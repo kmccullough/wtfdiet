@@ -1,0 +1,41 @@
+@import '../functions/units';
+
+.c-meal-plan-schedule {
+  &__meal {
+    padding: .5rem 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+  &__date {
+    display: inline-block;
+    width: 8rem;
+    text-transform: uppercase;
+    font-size: .8rem;
+    color: #444;
+  }
+  &__date-day {
+    display: inline-block;
+    width: 2rem;
+    font-size: 1.3rem;
+    text-align: right;
+    margin: 0 1rem 0 0;
+    color: #000;
+  }
+  &__meal-tags {
+    padding-left: 1rem;
+  }
+  &__attendees {
+    float: right;
+  }
+  &__attendee {
+    $size: 1.5rem;
+    $border-size: 1px;
+    display: inline-block;
+    text-align: center;
+    width: $size;
+    height: $size;
+    line-height: $size;
+    border-radius: calc(#{px($size)} / 2 + #{px($border-size)} * 2);
+    background-color: #ccc;
+    border: $border-size solid rgba(0, 0, 0, .3);
+  }
+}

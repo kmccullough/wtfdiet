@@ -1,5 +1,7 @@
 # wtfdiet
 
+***What the frick do I eat today?***
+
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 

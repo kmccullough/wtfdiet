@@ -1,0 +1,27 @@
+.l-modal {
+  text-align: center;
+
+  &,
+  &__mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  &__mask {
+    background-color: rgba(64, 64, 64, .5);
+    // TODO: Center such that content can be scrolled
+    display: grid;
+    justify-content: center;
+    align-content: center;
+  }
+
+  &__dialog {
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #888;
+    display: inline-block;
+    margin: 1rem auto;
+  }
+}

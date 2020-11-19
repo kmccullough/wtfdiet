@@ -1,0 +1,10 @@
+<span class="c-meal-tags">
+  <span class="c-meal-tags__tag c-meal-tags__tag--beef">Beef</span>
+  <span class="c-meal-tags__tag c-meal-tags__tag--chicken">Chicken</span>
+  {{#each @meal.tags as |tag|}}
+    <span class="c-meal-tags__tag"
+      style="background-color: {{tag.color}}"
+    >{{tag.name}}</span>
+  {{/each}}
+</span>
+{{yield}}

@@ -1,0 +1,9 @@
+@import 'functions/units';
+
+$l-app__header___padding-v: .5rem;
+$l-app__header___border-bottom-height: 1px;
+$l-app__heading___font-size: 2rem;
+
+$l-app__header___total-height: #{'( '} #{px($l-app__header___padding-v) * 2} #{' + '} #{px($l-app__heading___font-size)} #{' + '} #{px($l-app__header___border-bottom-height)} #{' )'};
+$l-app__footer___total-height: #{'( '} px(0) #{' )'};
+$l-app__content___height: calc(100% - #{$l-app__header___total-height} - #{$l-app__footer___total-height});

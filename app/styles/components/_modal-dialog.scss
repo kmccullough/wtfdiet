@@ -1,0 +1,32 @@
+@import '../mixins/positioning';
+
+.c-modal-dialog {
+  &__header {
+    padding: .5rem;
+    border-bottom: 1px solid #ccc;
+    @include clearFix;
+  }
+
+  &__heading {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__heading-actions {
+    float: right;
+  }
+
+  &__content {
+    padding: 1rem;
+  }
+
+  &__footer {
+    padding: 0 1em 1em 1em;
+    @include clearFix;
+  }
+
+  &__footer-actions {
+    float: right;
+  }
+}

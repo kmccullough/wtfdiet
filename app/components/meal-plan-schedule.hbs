@@ -1,0 +1,39 @@
+<div class="c-meal-plan-schedule">
+  {{#each @planMeals as |meal $index|}}
+    {{#let (get this.dates $index) as |date|}}
+      <div class="c-meal-plan-schedule__meal">
+        <span class="c-meal-plan-schedule__date">
+          <span class="c-meal-plan-schedule__date-day">
+            {{~day-month date~}}
+          </span>
+          <span class="c-meal-plan-schedule__date-month">
+            {{~month-short date~}}
+          </span>,
+          <span class="c-meal-plan-schedule__date-day-week">
+            {{~day-week-short date~}}
+          </span>
+        </span>
+        <span class="c-meal-plan-schedule__meal-name">{{meal.name}}</span>
+        <span class="c-meal-plan-schedule__meal-tags"><MealTags @meal={{meal}} /></span>
+        <span class="c-meal-plan-schedule__attendees">
+          <span class="c-meal-plan-schedule__attendee
+          c-meal-plan-schedule__attendee--kerry">K</span>
+          <span class="c-meal-plan-schedule__attendee
+          c-meal-plan-schedule__attendee--lorien">L</span>
+          <span class="c-meal-plan-schedule__attendee
+          c-meal-plan-schedule__attendee--lily">L</span>
+          <span class="c-meal-plan-schedule__attendee
+          c-meal-plan-schedule__attendee--joey">J</span>
+          <span class="c-meal-plan-schedule__attendee
+          c-meal-plan-schedule__attendee--arya">A</span>
+          <span class="c-meal-plan-schedule__attendee
+          c-meal-plan-schedule__attendee--harlow">H</span>
+          <span class="c-meal-plan-schedule__attendee
+          c-meal-plan-schedule__attendee--amelia">A</span>
+          <span class="c-meal-plan-schedule__attendee">...</span>
+        </span>
+      </div>
+    {{/let}}
+  {{/each}}
+</div>
+{{yield}}

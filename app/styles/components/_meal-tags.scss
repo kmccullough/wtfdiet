@@ -1,0 +1,23 @@
+
+.c-meal-tags {
+  &__tag {
+    $size: 1.2rem;
+    display: inline-block;
+    text-align: center;
+    height: $size;
+    padding: 0 .5rem;
+    line-height: $size;
+    border-radius: $size / 2;
+    background-color: #888;
+    font-size: .8rem;
+    border: 1px solid rgba(0, 0, 0, .3);
+
+    &--beef {
+      background-color: #a33;
+      color: #fff;
+    }
+    &--chicken {
+      background-color: #edd;
+    }
+  }
+}

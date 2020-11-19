@@ -1,0 +1,59 @@
+@import '../functions/units';
+@import '../mixins/positioning';
+
+.c-meal-list {
+
+  &__header {
+    background-color: #fc8;
+    padding: .5rem 1rem;
+    border-bottom: 1px solid #d96;
+    @include clearFix;
+  }
+
+  &__heading {
+    display: inline;
+    margin: 0;
+  }
+
+  &__header-actions {
+    float: right;
+  }
+
+  &__add-meal-action {
+  }
+
+  &__list {
+
+  }
+
+  &__meal {
+    @include clearFix;
+    padding: .5rem 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+
+  &__meal-tags {
+    display: block;
+    padding-top: .25rem;
+  }
+  &__favorites {
+    display: block;
+    padding-top: .25rem;
+  }
+  &__favorite {
+    $size: 1.2rem;
+    $border-size: 1px;
+    display: inline-block;
+    text-align: center;
+    width: $size;
+    height: $size;
+    line-height: $size;
+    border-radius: calc(#{px($size)} / 2 + #{px($border-size)} * 2);
+    background-color: #ccc;
+    border: $border-size solid rgba(0, 0, 0, .3);
+  }
+
+  &__meal-actions {
+    float: right;
+  }
+}

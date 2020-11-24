@@ -1,0 +1,13 @@
+@import '../mixins/tags';
+
+.c-meal-tags {
+  &__tag {
+    &--beef {
+      @include tag-colors(#a33);
+      color: #fff;
+    }
+    &--chicken {
+      @include tag-colors(#edd);
+    }
+  }
+}

@@ -1,4 +1,6 @@
 @import '../functions/units';
+@import '../mixins/attendees';
+@import '../mixins/buttons';
 @import '../mixins/positioning';
 
 .c-meal-list {
@@ -19,7 +21,18 @@
     float: right;
   }
 
-  &__add-meal-action {
+  &__header-action,
+  &__action {
+    @include button-colors(#000);
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+
+    &-text {
+      display: none;
+    }
+
   }
 
   &__list {
@@ -41,6 +54,7 @@
     padding-top: .25rem;
   }
   &__favorite {
+    @include attendee-colors(#ccc);
     $size: 1.2rem;
     $border-size: 1px;
     display: inline-block;
@@ -49,8 +63,8 @@
     height: $size;
     line-height: $size;
     border-radius: calc(#{px($size)} / 2 + #{px($border-size)} * 2);
-    background-color: #ccc;
     border: $border-size solid rgba(0, 0, 0, .3);
+    cursor: pointer;
   }
 
   &__meal-actions {

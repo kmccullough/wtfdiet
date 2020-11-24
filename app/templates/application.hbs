@@ -1,5 +1,16 @@
 <header class="l-app__header">
+  <svg class="l-app__header-icon l-app__header-icon--logo" width="32" height="32">
+    <use xlink:href="#logo-icon"></use>
+  </svg>
   <h1 class="l-app__heading">wtfdiet</h1>
+  <div class="l-app__actions">
+    <div class="l-route-meals__action-icon l-route-meals__action-icon--settings"
+      title="Settings">
+      <svg width="24" height="24">
+        <use xlink:href="#gear-icon"></use>
+      </svg>
+    </div>
+  </div>
 </header>
 <div class="l-app__content">
   {{outlet}}

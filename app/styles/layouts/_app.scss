@@ -2,11 +2,21 @@
 @import '../variables';
 
 .l-app {
+
   &__header {
     padding: $l-app__header___padding-v 1rem;
     border-bottom: $l-app__header___border-bottom-height solid #b73;
     background-color: #ea6;
     @include clearFix;
+  }
+
+  &__header-icon,
+  &__heading {
+    vertical-align: middle;
+  }
+
+  &__header-icon {
+    padding-right: .25rem;
   }
 
   &__heading {
@@ -15,6 +25,14 @@
     padding: 0;
     text-transform: lowercase;
     font-size: $l-app__heading___font-size;
+  }
+
+  &__actions {
+    float: right;
+  }
+
+  &action-icon {
+
   }
 
   &__content {

@@ -1,0 +1,9 @@
+@use 'sass:color';
+
+@mixin attendee-colors($bg-color) {
+  $transparency: 20%;
+  background-color: color.scale($bg-color, $alpha: -$transparency);
+  &:hover {
+    background-color: $bg-color;
+  }
+}

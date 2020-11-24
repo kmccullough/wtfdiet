@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg version="1.1"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   x="0px" y="0px" width="153.89526" height="141.67079"
+   viewBox="0 0 153.89527 141.6708"
+   xml:space="preserve"
+   sodipodi:docname="logo.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+    <!-- https://uxwing.com/food-restaurant-icon/ -->
+    <metadata id="metadata11">
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <dc:title></dc:title>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <defs id="defs9" />
+    <sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1552"
+   inkscape:window-height="836"
+   id="namedview7"
+   showgrid="false"
+   inkscape:zoom="3.4898124"
+   inkscape:cx="78.96591"
+   inkscape:cy="74.1853"
+   inkscape:window-x="48"
+   inkscape:window-y="27"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="g4"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0" />
+    <g id="g4" transform="translate(25.235314,24.344402)">
+        <path
+   d="M 27.894443,36.908458 C 31.27688,31.059431 31.631933,25.476203 26.227218,15.812732 L 13.43285,-9.586352 c -1.832276,-3.532713 -8.7574755,-0.56447 -7.108146,3.5828436 L 16.463168,14.71825 c 1.92818,3.873012 -4.045133,7.030226 -6.038515,3.039529 L -0.0637777,-3.6708188 C -2.069922,-7.42841 -8.6653174,-4.5995471 -6.6359829,-0.36450169 -3.6518996,5.558576 0.8661182,15.150762 3.8502009,21.073838 6.042245,24.648561 0.6902776,27.959489 -1.2963277,23.672731 L -11.70457,2.3858051 c -1.598487,-2.81164389 -5.419659,-2.17489997 -6.970674,0.3201448 -1.661963,2.664429 0.295562,5.343439 1.466843,7.8717201 l 11.3920588,24.716128 c 3.690036,6.999475 8.5233187,11.758704 15.5232372,11.311892 1.073336,-0.07036 2.442761,-0.40077 3.94487,-0.905813 l 21.847711,48.39202 c 1.648636,3.572416 6.105223,4.939983 9.612448,3.173676 l 0.800427,-0.400408 c 3.949482,-1.992603 5.648369,-6.906401 3.564288,-10.815404 L 24.309864,40.299003 c 1.691055,-1.190097 3.003598,-2.385477 3.584579,-3.390545 z"
+   id="path2"
+   inkscape:connector-curvature="0"
+   sodipodi:nodetypes="cccccccccccccccccccccc"
+   style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:12;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" />
+    <path
+   d="m 58.859806,-16.227688 c -0.110282,-4.258165 -7.889571,-1.419622 -11.216273,3.82025 -3.326703,5.2398717 -5.030375,8.8529319 -6.121516,21.5665072 -1.091141,12.7135758 5.384718,35.6753988 5.384718,35.6753988 L 44.546984,87.88526 c -0.126397,3.93245 3.245365,7.15156 7.172251,7.14353 l 0.894986,8.5e-4 c 4.423657,-0.0122 8.143795,-3.64433 8.031664,-8.07277 L 58.855023,44.780388 c 0,0 -0.151911,-44.19277754 0.0048,-61.008076 z"
+   id="path2-6"
+   inkscape:connector-curvature="0"
+   sodipodi:nodetypes="czzcccccccc"
+   style="opacity:1;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:12;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" /><path
+   sodipodi:nodetypes="sscccscccccccs"
+   inkscape:connector-curvature="0"
+   id="path2-3-7"
+   d="m 105.25536,-10.280179 c -1.34353,-0.03339 -2.69717,0.104852 -4.04492,0.398457 C 90.555678,-7.5606007 80.192871,4.4282989 76.58947,17.313708 79.493935,16.40589 82.369197,15.177905 84.523052,12.942575 96.365759,0.65182868 105.66731,-5.8647491 111.0523,4.1748721 114.72401,11.020289 111.65089,23.677273 104.09149,31.4835 95.179616,40.686372 87.18022,29.82093 80.955345,39.46446 l -18.05506,34.077829 -5.878921,11.215599 c -5.64061,11.308731 9.131413,17.545882 13.96488,7.275324 L 74.82416,83.16528 92.068134,46.548008 c 23.402396,5.301379 43.869876,-42.7358021 19.771206,-55.1426692 -2.13048,-1.0956963 -4.34479,-1.6298718 -6.58398,-1.6855178 z"
+   style="opacity:1;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:12;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" /><circle
+   style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+   id="path4618"
+   cx="52.376972"
+   cy="109.39349"
+   r="7.9328918" />
+    </g>
+</svg>

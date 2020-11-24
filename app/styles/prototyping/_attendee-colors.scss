@@ -1,0 +1,26 @@
+@import '../mixins/attendees';
+
+.c-meal-plan-schedule__attendee,
+.c-meal-list__favorite {
+  &--kerry {
+    @include attendee-colors(#08f);
+  }
+  &--lorien {
+    @include attendee-colors(#f88);
+  }
+  &--lily {
+    @include attendee-colors(#f8f);
+  }
+  &--joey {
+    @include attendee-colors(#8f8);
+  }
+  &--arya {
+    @include attendee-colors(#fa8);
+  }
+  &--harlow {
+    @include attendee-colors(#88f);
+  }
+  &--amelia {
+    @include attendee-colors(#a8f);
+  }
+}

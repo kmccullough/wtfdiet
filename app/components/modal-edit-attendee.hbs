@@ -1,6 +1,6 @@
-<div class="c-modal-edit-meal c-modal-dialog">
+<div class="c-modal-edit-attendee c-modal-dialog">
   <div class="c-modal-dialog__header">
-    <h3 class="c-modal-dialog__heading">Edit Meal</h3>
+    <h3 class="c-modal-dialog__heading">Edit Attendee</h3>
     <div class="c-modal-dialog__heading-actions">
       <button type="button" class="c-modal-dialog__close-action"
         title="close dialog"
@@ -11,16 +11,16 @@
   </div>
   <div class="c-modal-dialog__content">
     <label>
-      <span class="c-label__label">Meal Name:</span>
-      <Input @type="text" @value={{this.mealName}}/>
+      <span class="c-label__label">Attendee Name:</span>
+      <Input @type="text" @value={{this.attendeeName}}/>
     </label>
     {{yield}}
   </div>
   <div class="c-modal-dialog__footer">
     <div class="c-modal-dialog__footer-actions">
-      <button type="button" class="c-modal-edit-meal__save-action"
-        {{on "click" this.updateMeal}}>
-        Update Meal
+      <button type="button" class="c-modal-edit-attendee__save-action"
+        {{on "click" this.updateAttendee}}>
+        Update Attendee
       </button>
     </div>
   </div>

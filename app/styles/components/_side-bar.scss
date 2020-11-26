@@ -1,25 +1,25 @@
 @import '../functions/units';
+@import '../mixins/attendees';
+@import '../mixins/buttons';
+@import '../mixins/positioning';
 
-.l-route-meals {
+.c-side-bar {
   display: grid;
-  grid-template-columns: 1fr 48px 320px;
-  grid-template-areas: 'plan side-bar-selector side-bar';
+  grid-template-columns: 48px min-content;
+  grid-template-areas: 'selector content';
   overflow: hidden;
+  width: 100%;
   height: 100%;
 
-  &__plan {
-    grid-area: plan;
-    overflow: auto;
-    height: 100%;
-  }
-
-  &__side-bar-selector {
-    grid-area: side-bar-selector;
+  &__selector {
+    grid-area: selector;
     border-left: 1px solid #888;
     height: 100%;
     text-align: center;
+    background-color: #eee;
 
-    &-icon {
+    &-action {
+      box-sizing: content-box;
       $border-width: 1px;
       $size: 24px;
       $padding: 7px;
@@ -35,6 +35,8 @@
       border: $border-width solid rgba(0, 0, 0, 0);
       border-radius: calc(#{px($size)} / 2 + #{px($padding)} + #{px($border-width)});
       cursor: pointer;
+      outline: none;
+      background-color: transparent;
 
       &:hover {
         $color: rgba(0, 0, 0, .9);
@@ -68,12 +70,21 @@
       }
     }
 
+    &-text {
+      display: none;
+    }
+
   }
 
-  &__side-bar {
-    grid-area: side-bar;
+  &__content {
+    grid-area: content;
     border-left: 1px solid #888;
     overflow: auto;
     height: 100%;
+    width: 320px;
+
+    &--closed {
+      display: none;
+    }
   }
 }

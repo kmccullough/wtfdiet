@@ -1,14 +1,8 @@
 import Service from '@ember/service';
 
-import { A } from '@ember/array';
 import ObjectProxy from '@ember/object/proxy';
 import { cached, tracked } from '@glimmer/tracking';
-import {
-  TrackedObject,
-  TrackedArray,
-  TrackedMap,
-  TrackedSet,
-} from 'tracked-built-ins';
+import { TrackedArray } from 'tracked-built-ins';
 
 export default class MealsStoreService extends Service {
   _key = 'meals';

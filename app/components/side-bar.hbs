@@ -1,0 +1,24 @@
+<div class="c-side-bar">
+  <div class="c-side-bar__selector">
+    {{#each this.sides as |side|}}
+      <button type="button" class="c-side-bar__selector-action
+        c-side-bar__selector-action--{{side.classAffix}}
+        {{if side.selected (concat "c-side-bar__selector-action--selected
+        c-side-bar__selector-action--" side.classAffix "--selected")}}"
+        {{on "click" (fn this.toggleSide side)}}
+        title={{side.name}}>
+        <svg class="c-side-bar__selector-icon" width="24" height="24">
+          <use xlink:href="#{{side.icon}}"></use>
+        </svg>
+        <span class="c-side-bar__selector-text">{{side.name}}</span>
+      </button>
+    {{/each}}
+  </div>
+  <div class="c-side-bar__content
+    {{unless this.side "c-side-bar__content--closed"}}">
+    {{#if this.side}}
+      {{component this.sideComponent closeSide=this.closeSide}}
+    {{/if}}
+    {{yield}}
+  </div>
+</div>

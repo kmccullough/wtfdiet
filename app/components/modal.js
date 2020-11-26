@@ -6,7 +6,11 @@ import { cached } from '@glimmer/tracking';
 export default class ModalComponent extends Component {
   @cached
   get modal() {
-    const name = `modal-${this.args.modal}`;
-    return getOwner(this).factoryFor(`component:${name}`) && name;
+    const { modal } = this.args;
+    if (!modal) {
+      return null;
+    }
+    const name = `modal-${modal}`;
+    return getOwner(this).factoryFor(`component:${name}`) && name || null;
   }
 }

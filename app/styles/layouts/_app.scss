@@ -36,7 +36,24 @@
   }
 
   &__content {
+    @import '../functions/units';
+    display: grid;
+    grid-template-columns: 1fr fit-content(368px);
+    grid-template-areas: 'main side';
+    overflow: hidden;
     height: $l-app__content___height;
     overflow: hidden;
+
+    &-main {
+      grid-area: main;
+      overflow: auto;
+      height: 100%;
+    }
+
+    &-side {
+      grid-area: side;
+      overflow: hidden;
+      height: 100%;
+    }
   }
 }

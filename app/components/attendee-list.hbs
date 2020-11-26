@@ -1,0 +1,52 @@
+<div class="c-attendee-list">
+  <div class="c-attendee-list__header">
+    <h2 class="c-attendee-list__heading">Attendees</h2>
+    <div class="c-attendee-list__header-actions">
+      <button type="button"
+        class="c-attendee-list__header-action c-attendee-list__header-action--add"
+        title="Add Attendee" {{on "click" (open-modal "add-attendee")}}>
+        <svg class="c-attendee-list__header-action-icon
+          c-attendee-list__header-action-icon--add"
+          width="18" height="18">
+          <use xlink:href="#add-icon"></use>
+        </svg>
+        <span class="c-attendee-list__header-action-text
+          c-attendee-list__header-action-text--add">Add Attendee</span>
+      </button>
+      {{#if @closeSideBar}}
+        <button type="button"
+          class="c-attendee-list__header-action c-attendee-list__header-action--close"
+          title="Close Side-Bar" {{on "click" @closeSideBar}}>
+          <svg class="c-attendee-list__header-action-icon
+            c-attendee-list__header-action-icon--close"
+            width="18" height="18">
+            <use xlink:href="#close-icon"></use>
+          </svg>
+          <span class="c-attendee-list__header-action-text
+            c-attendee-list__header-action-text--close">Close Side-Bar</span>
+        </button>
+      {{/if}}
+    </div>
+  </div>
+  <div class="c-attendee-list__list">
+    {{#each @attendees as |attendee|}}
+      <div class="c-attendee-list__attendee">
+        <span class="c-attendee-list__attendee-name">{{attendee.name}}</span>
+        <span class="c-attendee-list__attendee-actions">
+          <button type="button"
+            class="c-attendee-list__action c-attendee-list__action--edit"
+            title="Edit Attendee"
+            {{on "click" (open-modal "edit-attendee" attendee.id)}}>
+            <svg class="c-attendee-list__action-icon c-attendee-list__action-icon--edit"
+              width="18" height="18">
+              <use xlink:href="#edit-icon"></use>
+            </svg>
+            <span class="c-attendee-list__action-text c-attendee-list__action-text--edit"
+            >Edit Attendee</span>
+          </button>
+        </span>
+      </div>
+    {{/each}}
+  </div>
+</div>
+{{yield}}

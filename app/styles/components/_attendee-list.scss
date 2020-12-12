@@ -43,6 +43,20 @@
     @include clearFix;
     padding: .5rem 1rem;
     border-bottom: 1px solid #ccc;
+
+    &-color {
+      $size: 1.5rem;
+      $border-size: 1px;
+      box-sizing: content-box;
+      display: inline-block;
+      text-align: center;
+      width: $size;
+      height: $size;
+      line-height: $size;
+      margin-right: .3rem;
+      border-radius: calc(#{px($size / 2)} + #{px($border-size * 2)});
+      border: $border-size solid rgba(0, 0, 0, .3);
+    }
   }
 
   &__attendee-actions {

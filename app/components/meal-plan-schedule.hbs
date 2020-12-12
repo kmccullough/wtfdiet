@@ -16,27 +16,16 @@
         <span class="c-meal-plan-schedule__meal-name">{{meal.name}}</span>
         <span class="c-meal-plan-schedule__meal-tags"><MealTags @meal={{meal}} /></span>
         <span class="c-meal-plan-schedule__attendees">
-          <span class="c-meal-plan-schedule__attendee
-            c-meal-plan-schedule__attendee--kerry"
-            title="Click to remove attendee &quot;Kerry&quot;">K</span>
-          <span class="c-meal-plan-schedule__attendee
-            c-meal-plan-schedule__attendee--lorien"
-            title="Click to remove attendee &quot;Lorien&quot;">L</span>
-          <span class="c-meal-plan-schedule__attendee
-            c-meal-plan-schedule__attendee--lily"
-            title="Click to remove attendee &quot;Lily&quot;">L</span>
-          <span class="c-meal-plan-schedule__attendee
-            c-meal-plan-schedule__attendee--joey"
-            title="Click to remove attendee &quot;Joey&quot;">J</span>
-          <span class="c-meal-plan-schedule__attendee
-            c-meal-plan-schedule__attendee--arya"
-            title="Click to remove attendee &quot;Arya&quot;">A</span>
-          <span class="c-meal-plan-schedule__attendee
-            c-meal-plan-schedule__attendee--harlow"
-            title="Click to remove attendee &quot;Harlow&quot;">H</span>
-          <span class="c-meal-plan-schedule__attendee
-            c-meal-plan-schedule__attendee--amelia"
-            title="Click to remove attendee &quot;Amelia&quot;">A</span>
+          {{#each this.attendees as |attendee|}}
+            <span class="c-meal-plan-schedule__attendee"
+              style={{trusted-html
+                (if attendee.color (concat "background-color: " attendee.color))
+              }}
+              title="Click to remove attendee &quot;{{attendee.name}}&quot;"
+            >
+              {{~initial attendee.name~}}
+            </span>
+          {{/each}}
           <span class="c-meal-plan-schedule__attendee"
             title="Click to add attendee">...</span>
         </span>

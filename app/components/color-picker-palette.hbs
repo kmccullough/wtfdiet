@@ -1,0 +1,19 @@
+<div class="c-color-picker-palette">
+  <div class="c-color-picker-palette__colors">
+    {{#each this.colors as |color|}}
+      <button type="button" class="
+          c-color-picker-palette__color
+          {{if color.selected "c-color-picker-palette__selected"}}
+        "
+        style={{trusted-html (concat "background-color: " color.hex)}}
+        title={{concat color.title
+          (if color.attendee (concat " (" color.attendee.name ")"))
+        }}
+        {{on "click" (fn this.onClickColor color)}}
+      >
+        {{~if color.attendee (initial color.attendee.name)~}}
+      </button>
+    {{/each}}
+  </div>
+  {{yield}}
+</div>

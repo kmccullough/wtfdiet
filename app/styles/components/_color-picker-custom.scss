@@ -1,0 +1,90 @@
+.c-color-picker-custom {
+
+  &__shade {
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 100px;
+    background-color: #f00;
+
+    &-light {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: -webkit-gradient(linear, left top, right top, from(#fff), to(rgba(255,255,255,0)));
+      background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0) 100%);
+    }
+
+    &-dark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#000));
+      background: linear-gradient(to bottom, transparent 0%, #000 100%);
+    }
+  }
+
+  &__hue {
+    display: block;
+    width: 200px;
+    height: 8px;
+    background: -webkit-gradient(linear, left top, right top, from(red), color-stop(17%, #ff0), color-stop(33%, lime), color-stop(50%, cyan), color-stop(66%, blue), color-stop(83%, #f0f), to(red));
+    background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, blue 66%, #f0f 83%, red 100%);
+  }
+
+  &__alpha {
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 8px;
+    background-image: linear-gradient(45deg, #ccc 25%, transparent 25%),linear-gradient(-45deg, #ccc 25%, transparent 25%),linear-gradient(45deg, transparent 75%, #ccc 75%),linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+
+    &-shade {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to right, rgb(182, 43, 43) 0%, rgba(182, 43, 43, 0) 100%);
+    }
+  }
+
+  &__hex {
+    &-label {
+
+    }
+
+    &-text {
+
+    }
+
+    &-input {
+      width: 5rem;
+    }
+  }
+
+  &__rgba {
+    &-r,
+    &-g,
+    &-b,
+    &-a {
+      &-label {
+
+      }
+
+      &-text {
+
+      }
+
+      &-input {
+        width: 2rem;
+      }
+    }
+  }
+}

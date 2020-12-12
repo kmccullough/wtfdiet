@@ -14,6 +14,13 @@
       <span class="c-label__label">Attendee Name:</span>
       <Input @type="text" @value={{this.attendeeName}}/>
     </label>
+    <label>
+      <span class="c-label__label">Attendee Color:</span>
+      <ColorPicker @color={{this.attendeeColor}}
+        @attendee={{this.attendee}}
+        @onPick={{this.onPickColor}}
+      />
+    </label>
     {{yield}}
   </div>
   <div class="c-modal-dialog__footer">

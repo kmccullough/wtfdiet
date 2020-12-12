@@ -5,6 +5,7 @@
   &__meal {
     padding: .5rem 1rem;
     border-bottom: 1px solid #ccc;
+    overflow: hidden;
   }
   &__date {
     display: inline-block;

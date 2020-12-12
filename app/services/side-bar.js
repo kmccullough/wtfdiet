@@ -41,16 +41,16 @@ export default class SideBarService extends Service {
     let side = params[this.sideQueryParam];
 
     if (!side || !(side = this.getSideByParam(side))) {
-    // FIXME: This raises an exception on the initial page load
-    //   this.router.replaceWith({
-    //     queryParams: {
-    //       [this.sideQueryParam]: getSideParam(this.defaultSide),
-    //     },
-    //   });
-    //   return;
+      // FIXME: This raises an exception on the initial page load
+      this.router.replaceWith({
+        queryParams: {
+          [this.sideQueryParam]: getSideParam(this.defaultSide),
+        },
+      });
+      return;
     }
 
-    this.side = side || null;
+    this.side = side;
   }
 
   setSide(side) {

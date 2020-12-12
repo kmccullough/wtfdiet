@@ -44,29 +44,18 @@
         </span>
         <span class="c-meal-list__meal-tags"><MealTags @meal={{meal}} /></span>
         <span class="c-meal-list__favorites">
-          <span class="c-meal-list__favorite
-            c-meal-list__favorite--kerry"
-            title="Click to remove favorite from &quot;Kerry&quot;">K</span>
-          <span class="c-meal-list__favorite
-            c-meal-list__favorite--lorien"
-            title="Click to remove favorite from &quot;Lorien&quot;">L</span>
-          <span class="c-meal-list__favorite
-            c-meal-list__favorite--lily"
-            title="Click to remove favorite from &quot;Lily&quot;">L</span>
-          <span class="c-meal-list__favorite
-            c-meal-list__favorite--joey"
-            title="Click to remove favorite from &quot;Joey&quot;">J</span>
-          <span class="c-meal-list__favorite
-            c-meal-list__favorite--arya"
-            title="Click to remove favorite from &quot;Arya&quot;">A</span>
-          <span class="c-meal-list__favorite
-            c-meal-list__favorite--harlow"
-            title="Click to remove favorite from &quot;Harlow&quot;">H</span>
-          <span class="c-meal-list__favorite
-            c-meal-list__favorite--amelia"
-            title="Click to remove favorite from &quot;Amelia&quot;">A</span>
-        <span class="c-meal-list__favorite"
-          title="Click to add as someone's favorite">...</span>
+          {{#each this.attendees as |attendee|}}
+            <span class="c-meal-list__favorite"
+              style={{trusted-html
+                (if attendee.color (concat "background-color: " attendee.color))
+              }}
+              title="Click to remove favorite from &quot;{{attendee.name}}&quot;"
+            >
+              {{~initial attendee.name~}}
+            </span>
+          {{/each}}
+          <span class="c-meal-list__favorite"
+            title="Click to add as someone's favorite">...</span>
         </span>
       </div>
     {{/each}}

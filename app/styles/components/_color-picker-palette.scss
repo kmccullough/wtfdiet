@@ -1,0 +1,37 @@
+@import '../functions/units';
+
+.c-color-picker-palette {
+  $color-size: 1.5rem;
+  $border-size: 1px;
+
+  &__colors {
+    display: grid;
+    grid-template-columns: repeat(6, calc(#{px($color-size)} + #{px($border-size * 3)}));
+    grid-gap: .5rem;
+  }
+
+  &__color {
+    box-sizing: content-box;
+    padding: $border-size * 2;
+    display: inline-block;
+    text-align: center;
+    width: $color-size;
+    height: $color-size;
+    line-height: $color-size;
+    border-radius: calc(#{px($color-size / 2)} + #{px($border-size * 3)});
+    border: $border-size solid rgba(0, 0, 0, .3);
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      border: px($border-size * 3) solid rgba(0, 0, 0, .5);
+      padding: 0;
+    }
+  }
+
+  &__selected {
+    border: px($border-size * 3) solid rgba(0, 0, 0, .5);
+    padding: 0;
+    cursor: default;
+  }
+}

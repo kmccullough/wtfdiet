@@ -1,0 +1,26 @@
+<button type="button" class="c-color-picker"
+  title={{or @title "Click to choose color"}}
+  {{did-insert this.didInsertButton}}
+  {{did-update this.didUpdateColor @color}}
+  {{on "click" this.onClick}}>
+  <span class="c-color-picker__text">{{yield}}</span>
+  <span class="c-color-picker__color"
+    style={{trusted-html (if this.color (concat "background-color: " this.color))
+  }}></span>
+  <span class="c-color-picker__code">unset</span>
+</button>
+<Popup @didInsert={{this.didInsertPopup}} @target={{this.button}}>
+  {{#if this.customColor}}
+    <ColorPickerCustom
+      @color={{this.color}}
+      @attendee={{@attendee}}
+      @onPick={{this.onPickCustomColor}}
+    />
+  {{else}}
+    <ColorPickerPalette
+      @color={{this.color}}
+      @attendee={{@attendee}}
+      @onPick={{this.onPickPaletteColor}}
+    />
+  {{/if}}
+</Popup>

@@ -1,0 +1,50 @@
+<div class="c-color-picker-controls">
+  <div class="c-color-picker-controls__shade">
+    <div class="c-color-picker-controls__shade-light"></div>
+    <div class="c-color-picker-controls__shade-dark"></div>
+  </div>
+  <div class="c-color-picker-controls__fine">
+    <div class="c-color-picker-controls__hex">
+      <label class="c-color-picker-controls__hex-label">
+        <span class="c-color-picker-controls__hex-text">Hex</span>
+        <Input @type="text" class="c-color-picker-controls__hex-input"
+          @value={{this.colorHex}} />
+      </label>
+    </div>
+    <div class="c-color-picker-controls__rgba">
+      <span class="c-color-picker-controls__rgba-r">
+        <label class="c-color-picker-controls__rgba-r-label">
+          <span class="c-color-picker-controls__rgba-r-text">R</span>
+          <Input @type="text" class="c-color-picker-controls__rgba-r-input"
+            @value={{this.colorR}} />
+        </label>
+      </span>
+      <span class="c-color-picker-controls__rgba-g__hex">
+        <label class="c-color-picker-controls__rgba-g-label">
+          <span class="c-color-picker-controls__rgba-g-text">G</span>
+          <Input @type="text" class="c-color-picker-controls__rgba-g-input"
+            @value={{this.colorG}} />
+        </label>
+      </span>
+      <span class="c-color-picker-controls__rgba-b">
+        <label class="c-color-picker-controls__rgba-b-label">
+          <span class="c-color-picker-controls__rgba-b-text">B</span>
+          <Input @type="text" class="c-color-picker-controls__rgba-b-input"
+            @value={{this.colorHex}} />
+        </label>
+      </span>
+      <span class="c-color-picker-controls__rgba-a">
+        <label class="c-color-picker-controls__rgba-a-label">
+          <span class="c-color-picker-controls__rgba-a-text">A</span>
+          <Input @type="text" class="c-color-picker-controls__rgba-a-input"
+            @value={{this.colorHex}} />
+        </label>
+      </span>
+    </div>
+  </div>
+  <div class="c-color-picker-controls__hue"></div>
+  <div class="c-color-picker-controls__alpha">
+    <div class="c-color-picker-controls__alpha-shade"></div>
+  </div>
+  {{yield}}
+</div>

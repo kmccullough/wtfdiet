@@ -12,11 +12,8 @@ export default class ApplicationRoute extends Route {
     ...this.sideBar.routeQueryParams,
   };
 
-  beforeModel(transition)  {
-    this.sideBar.processParams(transition.to.queryParams);
-  }
-
   model(params) {
+    this.sideBar.processParams(params);
     return {
       modal: params.modal,
       modalId: params['modal-id'],

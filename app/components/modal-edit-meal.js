@@ -4,10 +4,13 @@ import { action } from '@ember/object';
 import { inject } from '@ember/service';
 
 export default class ModalEditMealComponent extends Component {
+
   @inject('meals') mealService;
   @inject modal;
+
   meal;
   mealName;
+
   constructor() {
     super(...arguments);
     this.meal = this.mealService.getMeal(this.args.modalId);
@@ -17,6 +20,7 @@ export default class ModalEditMealComponent extends Component {
     }
     this.mealName = this.meal.name;
   }
+
   @action
   updateMeal() {
     this.mealService.updateMeal({
@@ -25,4 +29,5 @@ export default class ModalEditMealComponent extends Component {
     });
     this.modal.close();
   }
+
 }

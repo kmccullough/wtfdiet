@@ -5,28 +5,35 @@ import { cached, tracked } from '@glimmer/tracking';
 import { TrackedArray } from 'tracked-built-ins';
 
 export default class AttendeesStoreService extends Service {
+
   _key = 'attendees';
   _attendeeIds;
+
   getAttendeesArrayFromStorage() {
     const attendees = [];
     this.getAttendeeIds().forEach(id => attendees.push(this.getAttendee(id)));
     return attendees;
   }
+
   @tracked
   attendeesArray = new TrackedArray(this.getAttendeesArrayFromStorage());
+
   @cached
   get attendeesById() {
     const attendees = {};
     this.getAttendeeIds().forEach(id => attendees[id] = this.getAttendee(id));
     return ObjectProxy.create({ content: attendees });
   }
+
   getNextAttendeeId() {
     const nextId = localStorage.getItem(`${this._key}::nextId`);
     return +(nextId || 1);
   }
+
   updateNextAttendeeId(id) {
     localStorage.setItem(`${this._key}::nextId`, id);
   }
+
   getAttendeeIds() {
     if (this._attendeeIds) {
       return this._attendeeIds;
@@ -36,12 +43,15 @@ export default class AttendeesStoreService extends Service {
       ids && Array.isArray(ids = JSON.parse(ids)) ? ids.map(id => +id) : []
     );
   }
+
   get length() {
     return this.getAttendeeIds().size;
   }
+
   updateAttendeeIds() {
     localStorage.setItem(`${this._key}::ids`, JSON.stringify(Array.from(this.getAttendeeIds())));
   }
+
   _getAttendee(id) {
     const ids = this.getAttendeeIds();
     const key = `${this._key}:${id}`;
@@ -54,6 +64,7 @@ export default class AttendeesStoreService extends Service {
     }
     return attendee;
   }
+
   getAttendee(id) {
     if (!id) {
       return;
@@ -65,6 +76,7 @@ export default class AttendeesStoreService extends Service {
     }
     return this._getAttendee(id);
   }
+
   updateAttendee(id, attendee) {
     if (!id) {
       return;
@@ -82,6 +94,7 @@ export default class AttendeesStoreService extends Service {
     this.attendeesById.set(id, attendee);
     localStorage.setItem(`${this._key}:${id}`, JSON.stringify(attendee));
   }
+
   addAttendee(attendee) {
     if (!attendee || typeof attendee !== 'object') {
       return;
@@ -95,6 +108,7 @@ export default class AttendeesStoreService extends Service {
     this.attendeesById.set(id, attendee);
     localStorage.setItem(`${this._key}:${id}`, JSON.stringify(attendee));
   }
+
   _deleteAttendee(id) {
     if (!id) {
       return;
@@ -117,6 +131,7 @@ export default class AttendeesStoreService extends Service {
     localStorage.removeItem(`${this._key}:${id}`);
     this.updateAttendeeIds();
   }
+
   deleteAttendee(id) {
     if (!id) {
       return;
@@ -129,9 +144,11 @@ export default class AttendeesStoreService extends Service {
     }
     this._deleteAttendee(id);
   }
+
   clearAttendees() {
     this.getAttendeeIds().forEach(id => this.deleteAttendee(id));
   }
+
   reidAttendees() {
     localStorage.removeItem(`${this._key}::ids`);
     const attendees = [];
@@ -147,4 +164,5 @@ export default class AttendeesStoreService extends Service {
       this.addAttendee(attendee);
     });
   }
+
 }

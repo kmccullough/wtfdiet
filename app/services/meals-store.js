@@ -5,28 +5,35 @@ import { cached, tracked } from '@glimmer/tracking';
 import { TrackedArray } from 'tracked-built-ins';
 
 export default class MealsStoreService extends Service {
+
   _key = 'meals';
   _mealIds;
+
   getMealsArrayFromStorage() {
     const meals = [];
     this.getMealIds().forEach(id => meals.push(this.getMeal(id)));
     return meals;
   }
+
   @tracked
   mealsArray = new TrackedArray(this.getMealsArrayFromStorage());
+
   @cached
   get mealsById() {
     const meals = {};
     this.getMealIds().forEach(id => meals[id] = this.getMeal(id));
     return ObjectProxy.create({ content: meals });
   }
+
   getNextMealId() {
     const nextId = localStorage.getItem(`${this._key}::nextId`);
     return +(nextId || 1);
   }
+
   updateNextMealId(id) {
     localStorage.setItem(`${this._key}::nextId`, id);
   }
+
   getMealIds() {
     if (this._mealIds) {
       return this._mealIds;
@@ -36,12 +43,15 @@ export default class MealsStoreService extends Service {
       ids && Array.isArray(ids = JSON.parse(ids)) ? ids.map(id => +id) : []
     );
   }
+
   get length() {
     return this.getMealIds().size;
   }
+
   updateMealIds() {
     localStorage.setItem(`${this._key}::ids`, JSON.stringify(Array.from(this.getMealIds())));
   }
+
   _getMeal(id) {
     const ids = this.getMealIds();
     const key = `${this._key}:${id}`;
@@ -54,6 +64,7 @@ export default class MealsStoreService extends Service {
     }
     return meal;
   }
+
   getMeal(id) {
     if (!id) {
       return;
@@ -65,6 +76,7 @@ export default class MealsStoreService extends Service {
     }
     return this._getMeal(id);
   }
+
   updateMeal(id, meal) {
     if (!id) {
       return;
@@ -82,6 +94,7 @@ export default class MealsStoreService extends Service {
     this.mealsById.set(id, meal);
     localStorage.setItem(`${this._key}:${id}`, JSON.stringify(meal));
   }
+
   addMeal(meal) {
     if (!meal || typeof meal !== 'object') {
       return;
@@ -95,6 +108,7 @@ export default class MealsStoreService extends Service {
     this.mealsById.set(id, meal);
     localStorage.setItem(`${this._key}:${id}`, JSON.stringify(meal));
   }
+
   _deleteMeal(id) {
     if (!id) {
       return;
@@ -117,6 +131,7 @@ export default class MealsStoreService extends Service {
     localStorage.removeItem(`${this._key}:${id}`);
     this.updateMealIds();
   }
+
   deleteMeal(id) {
     if (!id) {
       return;
@@ -129,9 +144,11 @@ export default class MealsStoreService extends Service {
     }
     this._deleteMeal(id);
   }
+
   clearMeals() {
     this.getMealIds().forEach(id => this.deleteMeal(id));
   }
+
   reidMeals() {
     localStorage.removeItem(`${this._key}::ids`);
     const meals = [];
@@ -147,4 +164,5 @@ export default class MealsStoreService extends Service {
       this.addMeal(meal);
     });
   }
+
 }

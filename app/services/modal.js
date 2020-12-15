@@ -3,7 +3,9 @@ import Service from '@ember/service';
 import { inject } from '@ember/service';
 
 export default class ModalService extends Service {
+
   @inject router;
+
   open(modal, modalId) {
     this.router.transitionTo({
       queryParams: {
@@ -12,6 +14,7 @@ export default class ModalService extends Service {
       }
     });
   }
+
   close() {
     this.router.transitionTo({
       queryParams: {
@@ -20,4 +23,5 @@ export default class ModalService extends Service {
       }
     });
   }
+
 }

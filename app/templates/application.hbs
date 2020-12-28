@@ -4,11 +4,18 @@
   </svg>
   <h1 class="l-app__heading">wtfdiet</h1>
   <div class="l-app__actions">
-    <div class="l-route-meal__action-icon l-route-meal__action-icon--settings"
-      title="Settings">
+    <button type="button" class="l-app__action l-app__action--settings"
+      title="Settings"
+      {{on "click" (settings)}}
+    >
       <svg width="24" height="24">
         <use xlink:href="#gear-icon"></use>
       </svg>
+      <span class="l-app__action-text l-app__action-text--settings"
+      >Settings</span>
+    </button>
+    <div class="l-app__action-icon l-app__action-icon--settings"
+      title="Settings">
     </div>
   </div>
 </header>

@@ -13,21 +13,60 @@
             {{~day-week-short date~}}
           </span>
         </span>
+        <span class="c-meal-plane-schedule__left-actions">
+          <button type="button"
+            class="c-meal-plan-schedule__action c-meal-plan-schedule_action--pin"
+            title="Pin Meal to Schedule"
+            {{on "click" (pin-meal meal.id date)}}>
+            <svg class="c-meal-plan-schedule__action-icon c-meal-plan-schedule__action-icon--pin"
+              width="14" height="14">
+              <use xlink:href="#{{trusted-html (if meal.pinned "pinned" "pin")}}-icon"></use>
+            </svg>
+            <span class="c-meal-list__action-text c-meal-list__action-text--pin"
+            >Pin Meal to Schedule</span>
+          </button>
+          <button type="button"
+            class="c-meal-plan-schedule__action c-meal-plan-schedule_action--randomize"
+            title="Randomize Scheduled Meal"
+            {{on "click" (randomize-meal meal.id date)}}>
+            <svg class="c-meal-plan-schedule__action-icon c-meal-plan-schedule__action-icon--randomize"
+              width="14" height="14">
+              <use xlink:href="#randomize-icon"></use>
+            </svg>
+            <span class="c-meal-list__action-text c-meal-list__action-text--randomize"
+            >Randomize Scheduled Meal</span>
+          </button>
+        </span>
         <span class="c-meal-plan-schedule__meal-name">{{meal.name}}</span>
+        <span class="c-meal-plane-schedule__right-actions">
+          <button type="button"
+            class="c-meal-plan-schedule__action c-meal-plan-schedule_action--edit"
+            title="Edit Meal" {{on "click" (open-modal "edit-meal" meal.id)}}>
+            <svg class="c-meal-plan-schedule__action-icon c-meal-plan-schedule__action-icon--edit"
+              width="14" height="14">
+              <use xlink:href="#edit-icon"></use>
+            </svg>
+            <span class="c-meal-list__action-text c-meal-list__action-text--edit"
+            >Edit Meal</span>
+          </button>
+        </span>
         <span class="c-meal-plan-schedule__meal-tags"><MealTags @meal={{meal}} /></span>
         <span class="c-meal-plan-schedule__attendees">
           {{#each this.attendees as |attendee|}}
-            <span class="c-meal-plan-schedule__attendee"
+            <button type="button" class="c-meal-plan-schedule__attendee"
               style={{trusted-html
                 (if attendee.color (concat "background-color: " attendee.color))
               }}
               title="Click to remove attendee &quot;{{attendee.name}}&quot;"
+              {{on "click" (unattend-meal meal.id date attendee.id)}}
             >
               {{~initial attendee.name~}}
-            </span>
+            </button>
           {{/each}}
-          <span class="c-meal-plan-schedule__attendee"
-            title="Click to add attendee">...</span>
+          <button type="button" class="c-meal-plan-schedule__attendee"
+            title="Click to add attendee"
+            {{on "click" (attend-meal meal.id date)}}
+          >...</button>
         </span>
       </div>
     {{/let}}

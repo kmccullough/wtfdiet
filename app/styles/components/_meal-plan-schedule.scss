@@ -1,11 +1,20 @@
 @import '../functions/units';
 @import '../mixins/attendees';
+@import '../mixins/buttons';
 
 .c-meal-plan-schedule {
   &__meal {
     padding: .5rem 1rem;
     border-bottom: 1px solid #ccc;
     overflow: hidden;
+  }
+  &__action {
+    @include button-colors(#000);
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    padding: 0 .2rem;
   }
   &__date {
     display: inline-block;
@@ -37,8 +46,15 @@
     width: $size;
     height: $size;
     line-height: $size;
+    font-size: $size * .6;
     border-radius: calc(#{px($size)} / 2 + #{px($border-size)} * 2);
     border: $border-size solid rgba(0, 0, 0, .3);
     cursor: pointer;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    &:hover {
+      border-color: rgba(0, 0, 0, .8);
+    }
   }
 }

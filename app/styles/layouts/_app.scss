@@ -1,3 +1,4 @@
+@import '../mixins/buttons';
 @import '../mixins/positioning';
 @import '../variables';
 
@@ -31,8 +32,16 @@
     float: right;
   }
 
-  &action-icon {
+  &__action {
+    @include button-colors(#000);
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
 
+    &-text {
+      display: none;
+    }
   }
 
   &__content {

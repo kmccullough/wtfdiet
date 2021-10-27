@@ -28,7 +28,7 @@ export function resolveEls(els) {
 
 export function getElementAncestorEl(element, ancestorEl) {
   while (element) {
-    if (element === ancestorEl || element.matches(ancestorEl))  {
+    if (element === ancestorEl || element.matches && element.matches(ancestorEl))  {
       return element;
     }
     element =  element.parentNode;

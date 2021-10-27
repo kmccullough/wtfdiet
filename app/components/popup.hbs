@@ -1,5 +1,10 @@
 <div class="l-popup__popup"
-  style={{trusted-html (concat "left: " this.left "px; top: " this.top "px;")}}
-  {{did-insert this.didInsertPopup}}>
+  {{did-update this.didUpdateOpen @open}}
+  {{did-insert (queue
+    this.didInsertPopup
+    this.didUpdateOpen
+  )}}
+  {{will-destroy this.willDestroyPopup}}
+>
   {{yield}}
 </div>

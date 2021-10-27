@@ -8,7 +8,7 @@ export default class PopupsComponent extends Component {
 
   @inject('popups') popupsService;
 
-  element;
+  _element;
 
   @cached
   get popups() {
@@ -17,15 +17,29 @@ export default class PopupsComponent extends Component {
 
   @action
   didInsertPopups(element) {
-    this.element = element;
+    this._element = element;
     this.didUpdatePopups();
+    window.addEventListener('scroll', this.updatePositions, true);
+  }
+
+  @action
+  updatePositions() {
+    this.popupsService.popups.forEach(p => p.updatePosition());
   }
 
   @action
   didUpdatePopups() {
-    this.element.innerHTML = '';
+    this._element.innerHTML = '';
     this.popupsService.popups
-      .forEach(p => this.element.appendChild(p.element));
+      .forEach(p => {
+        this._element.appendChild(p._element);
+        p.updatePosition();
+      });
+  }
+
+  @action
+  willDestroyPopups() {
+    window.removeEventListener('scroll', this.updatePositions, true);
   }
 
 }

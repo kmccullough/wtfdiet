@@ -10,7 +10,7 @@
     height: $size;
     padding: 0 .5rem;
     line-height: $size;
-    border-radius: $size / 2;
+    border-radius: $size * .5;
     font-size: .8rem;
     border: 1px solid $border-color;
     cursor: pointer;

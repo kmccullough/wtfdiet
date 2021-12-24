@@ -13,7 +13,7 @@ export default class ModalEditMealComponent extends Component {
 
   constructor() {
     super(...arguments);
-    this.meal = this.mealService.getMeal(this.args.modalId);
+    this.meal = this.mealService.mealsById[this.args.modalId];
     if (!this.meal) {
       this.modal.open('add-meal');
       return;
@@ -22,8 +22,14 @@ export default class ModalEditMealComponent extends Component {
   }
 
   @action
+  deleteMeal() {
+    this.mealService.delete(this.meal.id);
+    this.modal.close();
+  }
+
+  @action
   updateMeal() {
-    this.mealService.updateMeal({
+    this.mealService.update({
       ...this.meal,
       name: this.mealName,
     });

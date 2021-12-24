@@ -12,7 +12,7 @@ export default class ModalAddMealComponent extends Component {
 
   @action
   addMeal() {
-    this.mealService.addMeal({
+    this.mealService.add({
       name: this.mealName,
     });
     this.mealName = '';

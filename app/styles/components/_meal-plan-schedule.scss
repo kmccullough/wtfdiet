@@ -39,9 +39,10 @@
   }
   &__attendee {
     @include attendee-colors(#ccc);
+    position: relative;
+    display: inline-block;
     $size: 1.5rem;
     $border-size: 1px;
-    display: inline-block;
     text-align: center;
     width: $size;
     height: $size;
@@ -53,8 +54,13 @@
     outline: none;
     padding: 0;
     margin: 0;
+
     &:hover {
       border-color: rgba(0, 0, 0, .8);
+    }
+
+    &:focus {
+      outline: 1px dotted #000;
     }
   }
 }

@@ -13,13 +13,18 @@ export default class ModalAddAttendeeComponent extends Component {
 
   @action
   addAttendee() {
-    this.attendeeService.addAttendee({
+    this.attendeeService.add({
       name: this.attendeeName,
       color: this.attendeeColor,
     });
     this.attendeeName = '';
     this.attendeeColor = '';
     this.modal.close();
+  }
+
+  @action
+  onPickColor(color) {
+    this.attendeeColor = color;
   }
 
 }

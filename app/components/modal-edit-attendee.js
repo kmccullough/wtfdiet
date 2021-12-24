@@ -14,7 +14,7 @@ export default class ModalEditAttendeeComponent extends Component {
 
   constructor() {
     super(...arguments);
-    this.attendee = this.attendeeService.getAttendee(this.args.modalId);
+    this.attendee = this.attendeeService.attendeesById[this.args.modalId];
     if (!this.attendee) {
       this.modal.open('add-attendee');
       return;
@@ -24,8 +24,14 @@ export default class ModalEditAttendeeComponent extends Component {
   }
 
   @action
+  deleteAttendee() {
+    this.attendeeService.delete(this.attendee);
+    this.modal.close();
+  }
+
+  @action
   updateAttendee() {
-    this.attendeeService.updateAttendee({
+    this.attendeeService.update({
       ...this.attendee,
       name:  this.attendeeName,
       color: this.attendeeColor,

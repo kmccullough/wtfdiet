@@ -11,16 +11,20 @@
   </div>
   <div class="c-modal-dialog__content">
     <label>
-      <span class="c-label__label">Meal Name:</span>
+      <span class="c-label__label">Name:</span>
       <Input @type="text" @value={{this.mealName}}/>
     </label>
     {{yield}}
   </div>
   <div class="c-modal-dialog__footer">
     <div class="c-modal-dialog__footer-actions">
+      <button type="button" class="c-modal-edit-meal__delete-action"
+        {{on "click" this.deleteMeal}}>
+        Delete
+      </button>
       <button type="button" class="c-modal-edit-meal__save-action"
         {{on "click" this.updateMeal}}>
-        Update Meal
+        Update
       </button>
     </div>
   </div>

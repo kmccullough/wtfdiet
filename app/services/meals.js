@@ -1,37 +1,37 @@
 import Service from '@ember/service';
 
-import { inject } from '@ember/service';
 import { cached } from '@glimmer/tracking';
 
+import { LocalStorageCollection } from 'wtfdiet/utils/local-storage';
 import { randomize } from 'wtfdiet/utils/random';
 
 export default class MealsService extends Service {
 
-  @inject mealsStore;
+  mealsStore = new LocalStorageCollection('meals');
 
-  getMeal(id) {
-    return this.mealsStore.getMeal(id);
+  add(meal) {
+    this.mealsStore.add(meal);
   }
 
-  addMeal(meal) {
-    this.mealsStore.addMeal(meal);
+  delete(meal) {
+    this.mealsStore.delete(meal);
   }
 
-  updateMeal(meal) {
+  update(meal) {
     if (!meal || !meal.id) {
       return;
     }
-    this.mealsStore.updateMeal(meal.id, meal);
+    this.mealsStore.update(meal.id, meal);
   }
 
   @cached
   get meals() {
-    return this.mealsStore.mealsArray;
+    return this.mealsStore.collection;
   }
 
   @cached
   get mealsById() {
-    return this.mealsStore.mealsById;
+    return this.mealsStore.byId;
   }
 
   @cached

@@ -54,7 +54,7 @@
       height: $size;
       line-height: $size;
       margin-right: .3rem;
-      border-radius: calc(#{px($size / 2)} + #{px($border-size * 2)});
+      border-radius: calc(#{px($size * .5)} + #{px($border-size * 2)});
       border: $border-size solid rgba(0, 0, 0, .3);
     }
   }

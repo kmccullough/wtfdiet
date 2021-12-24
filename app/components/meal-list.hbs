@@ -45,17 +45,17 @@
         <span class="c-meal-list__meal-tags"><MealTags @meal={{meal}} /></span>
         <span class="c-meal-list__favorites">
           {{#each this.attendees as |attendee|}}
-            <button type="button" class="c-meal-list__favorite"
+            <button type="button" class="c-meal-list__attendee"
               style={{trusted-html
                 (if attendee.color (concat "background-color: " attendee.color))
               }}
               title="Click to remove favorite from &quot;{{attendee.name}}&quot;"
-              {{on "click" (unfavor-meal meal.id date attendee.id)}}
+              {{on "click" (unfavor-meal attendee meal)}}
             >
               {{~initial attendee.name~}}
             </button>
           {{/each}}
-          <button type="button" class="c-meal-list__favorite"
+          <button type="button" class="c-meal-list__attendee"
             title="Click to add as someone's favorite"
             {{on "click" (favor-meal meal.id date)}}
           >...</button>

@@ -1,35 +1,36 @@
 import Service from '@ember/service';
 
-import { inject } from '@ember/service';
 import { cached } from '@glimmer/tracking';
+
+import { LocalStorageCollection } from 'wtfdiet/utils/local-storage';
 
 export default class AttendeesService extends Service {
 
-  @inject attendeesStore;
+  attendeesStore = new LocalStorageCollection('attendees');
 
-  getAttendee(id) {
-    return this.attendeesStore.getAttendee(id);
+  add(attendee) {
+    this.attendeesStore.add(attendee);
   }
 
-  addAttendee(attendee) {
-    this.attendeesStore.addAttendee(attendee);
+  delete(attendee) {
+    this.attendeesStore.delete(attendee);
   }
 
-  updateAttendee(attendee) {
+  update(attendee) {
     if (!attendee || !attendee.id) {
       return;
     }
-    this.attendeesStore.updateAttendee(attendee.id, attendee);
+    this.attendeesStore.update(attendee.id, attendee);
   }
 
   @cached
   get attendees() {
-    return this.attendeesStore.attendeesArray;
+    return this.attendeesStore.collection;
   }
 
   @cached
   get attendeesById() {
-    return this.attendeesStore.attendeesById;
+    return this.attendeesStore.byId;
   }
 
 }

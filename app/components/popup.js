@@ -97,7 +97,6 @@ export default class PopupComponent extends Component {
 
   @action
   willDestroyPopup() {
-    console.log('destroy');
     this.popups.remove(this);
   }
 

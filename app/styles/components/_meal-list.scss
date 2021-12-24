@@ -53,8 +53,10 @@
     display: block;
     padding-top: .25rem;
   }
-  &__favorite {
+
+  &__attendee {
     @include attendee-colors(#ccc);
+    position: relative;
     $size: 1.2rem;
     $border-size: 1px;
     display: inline-block;
@@ -69,6 +71,7 @@
     outline: none;
     padding: 0;
     margin: 0;
+
     &:hover {
       border-color: rgba(0, 0, 0, .8);
     }

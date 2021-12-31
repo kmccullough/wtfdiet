@@ -3,7 +3,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject } from '@ember/service';
 
-export default class ModalEditMealComponent extends Component {
+export default class ModalMealEditComponent extends Component {
 
   @inject('meals') mealService;
   @inject modal;
@@ -15,7 +15,7 @@ export default class ModalEditMealComponent extends Component {
     super(...arguments);
     this.meal = this.mealService.mealsById[this.args.modalId];
     if (!this.meal) {
-      this.modal.open('add-meal');
+      this.modal.open('meal.add');
       return;
     }
     this.mealName = this.meal.name;

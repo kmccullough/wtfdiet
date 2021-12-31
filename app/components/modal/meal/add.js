@@ -3,7 +3,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject } from '@ember/service';
 
-export default class ModalAddMealComponent extends Component {
+export default class ModalMealAddComponent extends Component {
 
   @inject('meals') mealService;
   @inject modal;

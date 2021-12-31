@@ -4,7 +4,7 @@
     <div class="c-meal-list__header-actions">
       <button type="button"
         class="c-meal-list__header-action c-meal-list__header-action--add"
-        title="Add Meal" {{on "click" (open-modal "add-meal")}}>
+        title="Add Meal" {{on "click" (open-modal "meal.add")}}>
         <svg class="c-meal-list__header-action-icon c-meal-list__header-action-icon--add"
           width="18" height="18">
           <use xlink:href="#add-icon"></use>
@@ -33,7 +33,7 @@
         <span class="c-meal-list__meal-actions">
           <button type="button"
             class="c-meal-list__action c-meal-list__action--edit"
-            title="Edit Meal" {{on "click" (open-modal "edit-meal" meal.id)}}>
+            title="Edit Meal" {{on "click" (open-modal "meal.edit" meal.id)}}>
             <svg class="c-meal-list__action-icon c-meal-list__action-icon--edit"
               width="18" height="18">
               <use xlink:href="#edit-icon"></use>

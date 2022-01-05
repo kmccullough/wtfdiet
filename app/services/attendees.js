@@ -23,6 +23,14 @@ export default class AttendeesService extends Service {
     this.attendeesStore.update(attendee.id, attendee);
   }
 
+  copy(attendee) {
+    attendee = attendee || {};
+    return {
+      name: attendee.name || '',
+      color: attendee.color || null,
+    };
+  }
+
   @cached
   get attendees() {
     return this.attendeesStore.collection;

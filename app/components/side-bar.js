@@ -29,7 +29,7 @@ export default class SideBarComponent extends Component {
       return null;
     }
     const side = this.side.component || this.side.name.toLowerCase();
-    const name = `side-bar-${side}`;
+    const name = `side-bar/${side.replace('.', '/')}`;
     return getOwner(this).factoryFor(`component:${name}`) && name || null;
   }
 

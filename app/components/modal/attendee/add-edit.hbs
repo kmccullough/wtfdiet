@@ -1,6 +1,6 @@
-<div class="c-modal-add-attendee c-modal-dialog">
+<div class="c-modal-{{if @editAttendee "edit" "add"}}-attendee c-modal-dialog">
   <div class="c-modal-dialog__header">
-    <h3 class="c-modal-dialog__heading">Add Attendee</h3>
+    <h3 class="c-modal-dialog__heading">{{if @editAttendee "Edit" "Add"}} Attendee</h3>
     <div class="c-modal-dialog__heading-actions">
       <button type="button" class="c-modal-dialog__close-action"
         title="close dialog"
@@ -12,21 +12,28 @@
   <div class="c-modal-dialog__content">
     <label>
       <span class="c-label__label">Name:</span>
-      <Input @type="text" @value={{this.attendeeName}}/>
+      <Input @type="text" @value={{@attendee.name}}/>
     </label>
     <label>
       <span class="c-label__label">Color:</span>
-      <ColorPicker @color={{this.attendeeColor}}
-        @onPick={{this.onPickColor}}
+      <ColorPicker @color={{@attendee.color}}
+        @attendee={{@editAttendee}}
+        @onPick={{set @attendee "color"}}
       />
     </label>
     {{yield}}
   </div>
   <div class="c-modal-dialog__footer">
     <div class="c-modal-dialog__footer-actions">
+      {{#if @editAttendee}}
+        <button type="button" class="c-modal-edit-attendee__delete-action"
+          {{on "click" @deleteAttendee}}>
+          Delete
+        </button>
+      {{/if}}
       <button type="button" class="c-modal-add-attendee__save-action"
-        {{on "click" this.addAttendee}}>
-        Add
+        {{on "click" @saveAttendee}}>
+        {{if @editAttendee "Update" "Add"}}
       </button>
     </div>
   </div>

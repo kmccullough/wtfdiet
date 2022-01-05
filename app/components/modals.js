@@ -11,7 +11,7 @@ export default class ModalsComponent extends Component {
     if (!modal) {
       return null;
     }
-    const name = `modal-${modal}`;
+    const name = `modal/${modal.replace('.', '/')}`;
     return getOwner(this).factoryFor(`component:${name}`) && name || null;
   }
 

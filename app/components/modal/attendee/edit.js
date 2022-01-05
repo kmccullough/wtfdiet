@@ -3,24 +3,21 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject } from '@ember/service';
 
-export default class ModalEditAttendeeComponent extends Component {
+export default class ModalAttendeeEditComponent extends Component {
 
   @inject('attendees') attendeeService;
   @inject modal;
 
+  editAttendee = this.attendeeService.attendeesById[this.args.modalId];
   attendee;
-  attendeeName;
-  attendeeColor;
 
   constructor() {
     super(...arguments);
-    this.attendee = this.attendeeService.attendeesById[this.args.modalId];
-    if (!this.attendee) {
-      this.modal.open('add-attendee');
+    if (!this.editAttendee) {
+      this.modal.open('attendee.add');
       return;
     }
-    this.attendeeName = this.attendee.name;
-    this.attendeeColor = this.attendee.color;
+    this.attendee = this.attendeeService.copy(this.editAttendee);
   }
 
   @action
@@ -32,16 +29,10 @@ export default class ModalEditAttendeeComponent extends Component {
   @action
   updateAttendee() {
     this.attendeeService.update({
+      ...this.editAttendee,
       ...this.attendee,
-      name:  this.attendeeName,
-      color: this.attendeeColor,
     });
     this.modal.close();
-  }
-
-  @action
-  onPickColor(color) {
-    this.attendeeColor = color;
   }
 
 }

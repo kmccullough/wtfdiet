@@ -3,19 +3,17 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject } from '@ember/service';
 
-export default class ModalAddMealComponent extends Component {
+export default class ModalMealAddComponent extends Component {
 
   @inject('meals') mealService;
   @inject modal;
 
-  mealName;
+  meal = this.mealService.copy();
 
   @action
   addMeal() {
-    this.mealService.add({
-      name: this.mealName,
-    });
-    this.mealName = '';
+    this.mealService.add(this.meal);
+    this.meal = this.mealService.copy();
     this.modal.close();
   }
 

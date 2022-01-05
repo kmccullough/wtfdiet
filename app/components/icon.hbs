@@ -1,0 +1,7 @@
+<div class="c-icon c-icon--{{this.config.classModifier}}"
+  style={{if this.config.rotate (concat "transform: rotate(" this.config.rotate "deg)")}}
+  ...attributes>
+  <svg class="c-icon__image">
+    <use xlink:href="#{{this.config.icon}}-icon"/>
+  </svg>
+</div>

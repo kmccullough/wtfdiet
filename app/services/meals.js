@@ -24,6 +24,14 @@ export default class MealsService extends Service {
     this.mealsStore.update(meal.id, meal);
   }
 
+  copy(meal) {
+    meal = meal || {};
+    return {
+      name: meal.name || '',
+      favor: meal.favor || {},
+    };
+  }
+
   @cached
   get meals() {
     return this.mealsStore.collection;

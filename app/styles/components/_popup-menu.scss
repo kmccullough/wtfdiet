@@ -1,0 +1,26 @@
+
+.c-popup-menu {
+
+  margin: 0;
+  padding: 0;
+
+  &__heading,
+  &__item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__heading {
+    font-weight: bold;
+    padding-bottom: 2px;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-top: 1px;
+  }
+
+}

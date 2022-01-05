@@ -1,0 +1,31 @@
+.c-icon {
+  $default-color: #fff;
+  $default-background: #888;
+
+  @mixin colors($background: $default-background, $color: $default-color) {
+    color: $color;
+    fill: $color;
+    background: $background;
+  }
+
+  &--favor {
+    &-love {
+      @include colors(#844);
+    }
+    &-like {
+      @include colors(#448);
+    }
+    &-accept {
+      @include colors(#464);
+    }
+    &-dislike {
+      @include colors(#864);
+    }
+    &-reject {
+      @include colors(#222);
+    }
+    &-unknown {
+      @include colors();
+    }
+  }
+}

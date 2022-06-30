@@ -7,11 +7,19 @@ import { cached } from '@glimmer/tracking';
 export default class MealPlanScheduleComponent extends Component {
 
   @inject('attendees') attendeeService;
+  @inject('meals') mealService;
+  @inject('plans') planService;
+  @inject('slots') slotService;
   @inject popups;
 
   @cached
   get attendees() {
     return this.attendeeService.attendees;
+  }
+
+  @cached
+  get slots() {
+    return this.slotService.slots;
   }
 
   @cached
@@ -21,6 +29,27 @@ export default class MealPlanScheduleComponent extends Component {
       day.setDate(day.getDate() + i);
       return day;
     });
+  }
+
+  @cached
+  get allDates() {
+    const dates = [];
+    for (let i = 0;  i < 32; ++i) {
+      const date = new Date();
+      date.setDate(date.getDate() + i);
+      dates.push(date);
+    }
+    return dates;
+  }
+
+  @cached
+  get mealsById() {
+    return this.mealService.mealsById;
+  }
+
+  @cached
+  get plansById() {
+    return this.planService.plansById;
   }
 
   @action

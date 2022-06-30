@@ -22,7 +22,7 @@ export default class ModalMealEditComponent extends Component {
 
   @action
   deleteMeal() {
-    this.mealService.delete(this.meal);
+    this.mealService.delete(this.editMeal);
     this.modal.close();
   }
 

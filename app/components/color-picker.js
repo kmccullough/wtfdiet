@@ -30,7 +30,7 @@ export default class ColorButtonComponent extends Component {
 
   @action
   onClick() {
-    this.popup.popup();
+    this.popup.open();
   }
 
   @action

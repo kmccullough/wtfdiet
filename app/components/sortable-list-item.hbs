@@ -1,0 +1,6 @@
+<li class="c-sortable-list__item"
+ {{sortable-item model=@item}}
+>
+  <Icon @icon="draggable" {{sortable-handle}} />
+  {{yield @item}}
+</li>

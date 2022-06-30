@@ -22,7 +22,7 @@ export default class ModalAttendeeEditComponent extends Component {
 
   @action
   deleteAttendee() {
-    this.attendeeService.delete(this.attendee);
+    this.attendeeService.delete(this.editAttendee);
     this.modal.close();
   }
 

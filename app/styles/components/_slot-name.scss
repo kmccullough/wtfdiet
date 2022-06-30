@@ -1,0 +1,10 @@
+@import '../functions/units';
+@import '../mixins/attendees';
+@import '../mixins/buttons';
+@import '../mixins/positioning';
+
+.c-slot-name {
+  text-transform: uppercase;
+  font-size: .8em;
+  font-weight: bold;
+}

@@ -1,0 +1,55 @@
+@import '../functions/units';
+@import '../mixins/attendees';
+@import '../mixins/buttons';
+@import '../mixins/positioning';
+
+.c-slot-list {
+
+  &__header {
+    background-color: #fc8;
+    padding: .5rem 1rem;
+    border-bottom: 1px solid #d96;
+    @include clearFix;
+  }
+
+  &__heading {
+    display: inline;
+    margin: 0;
+  }
+
+  &__header-actions {
+    float: right;
+  }
+
+  &__header-action,
+  &__action {
+    @include button-colors(#000);
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+
+    &-text {
+      display: none;
+    }
+
+  }
+
+  &__list {
+
+  }
+
+  & :where(.c-sortable-list) {
+    margin: 0;
+  }
+
+  & :where(.c-sortable-list__item) {
+    @include clearFix;
+    padding: .5rem 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+
+  & :where(.c-sortable-list__item #{&}__slot-actions) {
+    float: right;
+  }
+}

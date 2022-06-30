@@ -1,0 +1,41 @@
+{{#let (hash) as | ctx |}}
+<button type="button" class="c-meal-select"
+  title="Choose Meal"
+  {{did-insert (set ctx "button")}}
+  {{on "click" (fnx ctx.popup.open)}}
+  ...attributes
+>
+  {{#if @meal}}
+    <span class="c-meal-select__name">{{@meal.name}}</span>
+  {{else}}
+    <span class="c-meal-select__empty">Choose Meal</span>
+  {{/if}}
+  <span class="c-meal-select__icon-wrapper">
+    <svg class="c-meal-select__icon"
+       width="14" height="14">
+      <use xlink:href="#edit-icon"></use>
+    </svg>
+  </span>
+</button>
+<Popup @didInsert={{set ctx "popup"}} @target={{ctx.button}}>
+  <ul class="c-popup-menu">
+    <li class="c-popup-menu__heading">Choose Meal</li>
+    {{#each (meals) as |meal $index|}}
+      <li class="c-popup-menu__item">
+        <button type="button" class="c-popup-menu__button"
+          title="Click to choose meal"
+          {{on "click" (queue
+            ctx.popup.close
+            (meal-assign @date @slot meal)
+            (fnx @onChange meal)
+          )}}
+        >
+          {{meal.name}}
+        </button>
+      </li>
+    {{/each}}
+  </ul>
+</Popup>
+
+{{yield}}
+{{/let}}

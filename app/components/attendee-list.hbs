@@ -1,7 +1,11 @@
 <div class="c-attendee-list">
+
   <div class="c-attendee-list__header">
+
     <h2 class="c-attendee-list__heading">Attendees</h2>
+
     <div class="c-attendee-list__header-actions">
+
       <button type="button"
         class="c-attendee-list__header-action c-attendee-list__header-action--add"
         title="Add Attendee" {{on "click" (open-modal "attendee.add")}}>
@@ -13,6 +17,7 @@
         <span class="c-attendee-list__header-action-text
           c-attendee-list__header-action-text--add">Add Attendee</span>
       </button>
+
       {{#if @closeSideBar}}
         <button type="button"
           class="c-attendee-list__header-action c-attendee-list__header-action--close"
@@ -26,11 +31,16 @@
             c-attendee-list__header-action-text--close">Close Side-Bar</span>
         </button>
       {{/if}}
+
     </div>
+
   </div>
+
   <div class="c-attendee-list__list">
+
     {{#each @attendees as |attendee|}}
       <div class="c-attendee-list__attendee">
+
         <span class="c-attendee-list__attendee-color"
           style={{trusted-html
             (if attendee.color (concat "background-color: " attendee.color))
@@ -38,7 +48,9 @@
         >
           {{~initial attendee.name~}}
         </span>
+
         <span class="c-attendee-list__attendee-name">{{attendee.name}}</span>
+
         <span class="c-attendee-list__attendee-actions">
           <button type="button"
             class="c-attendee-list__action c-attendee-list__action--edit"
@@ -52,8 +64,12 @@
             >Edit Attendee</span>
           </button>
         </span>
+
       </div>
     {{/each}}
+
   </div>
+
 </div>
+
 {{yield}}

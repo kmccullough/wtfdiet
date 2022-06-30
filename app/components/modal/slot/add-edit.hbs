@@ -1,8 +1,8 @@
-<div class="c-modal-{{if @editMeal "edit" "add"}}-meal c-modal-dialog">
+<div class="c-modal-{{if this.editSlot "edit" "add"}}-slot c-modal-dialog">
 
   <div class="c-modal-dialog__header">
 
-    <h3 class="c-modal-dialog__heading">{{if @editMeal "Edit" "Add"}} Meal</h3>
+    <h3 class="c-modal-dialog__heading">{{if @editSlot "Edit" "Add"}} Slot</h3>
 
     <div class="c-modal-dialog__heading-actions">
       <button type="button" class="c-modal-dialog__close-action"
@@ -18,7 +18,7 @@
 
     <label>
       <span class="c-label__label">Name:</span>
-      <Input @type="text" @value={{@meal.name}}/>
+      <Input @type="text" @value={{@slot.name}}/>
     </label>
 
     {{yield}}
@@ -29,16 +29,16 @@
 
     <div class="c-modal-dialog__footer-actions">
 
-      {{#if @editMeal}}
-        <button type="button" class="c-modal-edit-meal__delete-action"
-          {{on "click" @deleteMeal}}>
+      {{#if @editSlot}}
+        <button type="button" class="c-modal-edit-slot__delete-action"
+          {{on "click" @deleteSlot}}>
           Delete
         </button>
       {{/if}}
 
-      <button type="button" class="c-modal-edit-meal__save-action"
-        {{on "click" @saveMeal}}>
-        {{if @editMeal "Update" "Add"}}
+      <button type="button" class="c-modal-edit-slot__save-action"
+        {{on "click" @saveSlot}}>
+        {{if @editSlot "Update" "Add"}}
       </button>
 
     </div>

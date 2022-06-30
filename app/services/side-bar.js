@@ -12,6 +12,7 @@ export default class SideBarService extends Service {
   sides = [
     { name: 'Meals',     icon: 'meal-icon' },
     { name: 'Attendees', icon: 'attendees-icon' },
+    { name: 'Slots',     icon: 'slots-icon' },
   ];
 
   @inject router;

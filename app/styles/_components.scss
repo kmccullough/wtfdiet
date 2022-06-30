@@ -1,12 +1,19 @@
+@import 'components/icon--pre';
+
 @import 'components/attendee-list';
 @import 'components/color-picker';
 @import 'components/color-picker-custom';
 @import 'components/color-picker-palette';
 @import 'components/meal-list';
 @import 'components/meal-plan-schedule';
+@import 'components/meal-select';
 @import 'components/meal-tags';
 @import 'components/modal-dialog';
+@import 'components/plan-slot';
 @import 'components/popup-menu';
 @import 'components/side-bar';
+@import 'components/slot-list';
+@import 'components/slot-name';
+@import 'components/sortable-list';
 
-@import 'components/icon';
+@import 'components/icon--post';

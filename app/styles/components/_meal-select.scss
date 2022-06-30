@@ -1,0 +1,39 @@
+@use 'sass:color';
+
+.c-meal-select {
+  background-color: #fff;
+
+  $padding-v: .2rem;
+  $size: 1.2rem + $padding-v * 2;
+  display: inline-block;
+  text-align: center;
+  height: $size;
+  padding: $padding-v .5rem;
+  line-height: 1;
+  border-radius: $size * .5;
+  font-size: .8rem;
+  border: 1px solid rgba(0, 0, 0, .3);
+  cursor: pointer;
+
+  &__name {
+
+  }
+
+  &__empty {
+    color: #888;
+  }
+
+  &__icon {
+    fill: #888;
+    margin-left: .2rem;
+  }
+
+  &:hover {
+    background-color: #eee;
+    border-color: rgba(0, 0, 0, .4)
+  }
+
+  &:hover &__icon {
+    fill: #444;
+  }
+}

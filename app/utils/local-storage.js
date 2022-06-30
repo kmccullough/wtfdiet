@@ -39,6 +39,18 @@ export class LocalStorageCollection {
     return this.collection.length;
   }
 
+  /**
+   * Get item with given ID
+   * @param {string|number} id
+   */
+  get(id) {
+    return this.byId[id];
+  }
+
+  /**
+   * Add item with next ID
+   * @param {object} item
+   */
   add(item) {
     if (!item || typeof item !== 'object') {
       return;
@@ -52,11 +64,15 @@ export class LocalStorageCollection {
     this._updateIds();
   }
 
+  /**
+   * Update specific item by ID if it exists
+   * @param {string|number} id
+   * @param {object} item
+   */
   update(id, item) {
     if (!id) {
       return;
     }
-    id = +id;
     if (!item || typeof item !== 'object' || !this.byId[id]) {
       return;
     }
@@ -70,6 +86,38 @@ export class LocalStorageCollection {
     this.byId[id] = item;
   }
 
+  /**
+   * Set/create specific item by ID
+   * @param {string|number} id
+   * @param {object} item
+   */
+  set(id, item) {
+    if (!id) {
+      return;
+    }
+    if (!item || typeof item !== 'object') {
+      return;
+    }
+    item.id = id;
+    const { collection } = this;
+    let index = -1;
+    if (this.byId[id]) {
+      index = collection.findIndex(item => item.id === id);
+    }
+    if (index >= 0) {
+      collection.splice(index, 1, item);
+    } else {
+      collection.push(item);
+    }
+    localStorage.setItem(`${this._key}:${id}`, JSON.stringify(item));
+    this.byId[id] = item;
+    this._updateIds();
+  }
+
+  /**
+   * Delete specific item by ID
+   * @param {string|number} id
+   */
   delete(id) {
     if (!id) {
       return;
@@ -78,41 +126,30 @@ export class LocalStorageCollection {
       id = id.id;
     }
     localStorage.removeItem(`${this._key}:${id}`);
-    id = +id;
     const { collection } = this;
     const index = collection.findIndex(item => item.id === id);
-    if (index) {
+    if (index >= 0) {
       collection.splice(index, 1);
     }
     delete this.byId[id];
     this._updateIds();
   }
 
+  /**
+   * Clear all items
+   */
   clear() {
     this.collection.forEach(({ id }) => this.delete(id));
-  }
-
-  reid() {
-    localStorage.removeItem(`${this._key}::ids`);
-    const collection = [];
-    for (let i = 0, l = localStorage.length; i < l; ++i) {
-      const key = localStorage.key(i);
-      if (key.startsWith(`${this._key}:`) && !key.startsWith(`${this._key}::`)) {
-        collection.push(this.byId[key.substr(this._key.length + 1)]);
-      }
-    }
-    this._updateNextId(1);
-    collection
-      .sort((a, b) => a.id - b.id)
-      .forEach(item => {
-        this.delete(item);
-        this.add(item);
-      });
   }
 
   _getNextId() {
     const nextId = localStorage.getItem(`${this._key}::nextId`);
     return +(nextId || 1);
+  }
+
+  reorder(collection) {
+    this.collection = new TrackedArray(collection);
+    this._updateIds();
   }
 
   _updateNextId(id) {

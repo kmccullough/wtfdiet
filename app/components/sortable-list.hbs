@@ -1,0 +1,18 @@
+{{#let (hash) as | ctx |}}
+
+<ol class="c-sortable-list"
+ {{sortable-group onChange=(fnx @onChange)}}
+>
+  {{#each @list as |item|}}
+    {{yield (hash
+      item=(component "sortable-list-item"
+        item=item
+        dragContainer=dragContainer
+      )
+    )}}
+  {{/each}}
+</ol>
+
+{{yield}}
+
+{{/let}}

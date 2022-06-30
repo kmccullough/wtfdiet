@@ -66,7 +66,7 @@ export default class PopupComponent extends Component {
   }
 
   @action
-  popup() {
+  open() {
     if (!this.popups.has(this)) {
       this.popups.add(this);
       this.documentEvents.mouseMask(
@@ -89,7 +89,7 @@ export default class PopupComponent extends Component {
   @action
   didUpdateOpen() {
     if (this.args.open) {
-      this.popup();
+      this.open();
     } else {
       this.popups.remove(this);
     }

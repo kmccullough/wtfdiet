@@ -1,0 +1,10 @@
+@import '../functions/units';
+@import '../mixins/attendees';
+@import '../mixins/buttons';
+@import '../mixins/positioning';
+
+.c-plan-slot {
+  @include clearFix;
+  display: block;
+  margin-top: 0.2em;
+}

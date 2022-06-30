@@ -1,0 +1,19 @@
+@import '../functions/units';
+@import '../mixins/attendees';
+@import '../mixins/buttons';
+@import '../mixins/positioning';
+
+.c-sortable-list {
+
+  list-style: none;
+  padding: 0;
+
+  &__item {
+
+    & :where(.c-icon--draggable) {
+      vertical-align: middle;
+    }
+
+  }
+
+}

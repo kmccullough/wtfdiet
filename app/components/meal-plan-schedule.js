@@ -23,26 +23,6 @@ export default class MealPlanScheduleComponent extends Component {
   }
 
   @cached
-  get dates() {
-    return this.args.planMeals.map((meal, i) => {
-      const day = new Date();
-      day.setDate(day.getDate() + i);
-      return day;
-    });
-  }
-
-  @cached
-  get allDates() {
-    const dates = [];
-    for (let i = 0;  i < 32; ++i) {
-      const date = new Date();
-      date.setDate(date.getDate() + i);
-      dates.push(date);
-    }
-    return dates;
-  }
-
-  @cached
   get mealsById() {
     return this.mealService.mealsById;
   }

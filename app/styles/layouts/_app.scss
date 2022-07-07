@@ -5,10 +5,14 @@
 .l-app {
 
   &__header {
+    display: grid;
+    align-items: center;
+    gap: .5rem;
+    grid-template-columns: auto auto 1fr 1fr;
+    grid-template-areas: 'logo title actions-left actions-right';
     padding: $l-app__header___padding-v 1rem;
     border-bottom: $l-app__header___border-bottom-height solid #b73;
     background-color: #ea6;
-    @include clearFix;
   }
 
   &__header-icon,
@@ -17,10 +21,12 @@
   }
 
   &__header-icon {
+    grid-area: logo;
     padding-right: .25rem;
   }
 
   &__heading {
+    grid-area: title;
     display: inline;
     margin: 0;
     padding: 0;
@@ -29,7 +35,13 @@
   }
 
   &__actions {
-    float: right;
+    grid-area: actions-left;
+    padding-left: 1rem;
+  }
+
+  &__actions--right {
+    grid-area: actions-right;
+    justify-self: right;
   }
 
   &__action {
@@ -39,7 +51,7 @@
     outline: none;
     cursor: pointer;
 
-    &-text {
+    &-text:not(#{&}-text--alone) {
       display: none;
     }
   }

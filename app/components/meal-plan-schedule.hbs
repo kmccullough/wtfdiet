@@ -1,5 +1,5 @@
 <div class="c-meal-plan-schedule">
-  {{#each this.allDates as |date|}}
+  {{#each (schedule-dates) as |date|}}
     {{#let (get this.plansById (date-key date)) as |plan|}}
       {{#if (or plan "displayEmptyDays")}}
         <div class="c-meal-plan-schedule__meal {{unless plan "c-meal-plan-schedule__meal--empty"}}">

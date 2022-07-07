@@ -1,6 +1,7 @@
 .c-icon {
   $default-color: #fff;
   $default-background: #888;
+  display: inline-block;
 
   @mixin colors($background: $default-background, $color: $default-color) {
     color: $color;

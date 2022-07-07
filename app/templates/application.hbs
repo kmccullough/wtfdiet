@@ -4,6 +4,36 @@
   </svg>
   <h1 class="l-app__heading">wtfdiet</h1>
   <div class="l-app__actions">
+    <LinkTo class="l-app__action l-app__action l-app__action--today"
+      @route="meal.schedule"
+      title="Today"
+    >
+      <span class="l-app__action-text l-app__action-text--alone l-app__action-text--today"
+      >Today</span>
+    </LinkTo>
+    <LinkTo type="button" class="l-app__action l-app__action--prev"
+      @route="meal.schedule.year.month.day"
+      @models={{schedule-date array=true prev=true}}
+      title="Previous day"
+    >
+      <Icon @icon="arrow-left" />
+      <span class="l-app__action-text l-app__action-text--prev"
+      >Previous day</span>
+    </LinkTo>
+    <LinkTo type="button" class="l-app__action l-app__action--next"
+      @route="meal.schedule.year.month.day"
+      @models={{schedule-date array=true next=true}}
+      title="Next day"
+    >
+      <Icon @icon="arrow-right" />
+      <span class="l-app__action-text l-app__action-text--next"
+      >Next day</span>
+    </LinkTo>
+    <div>
+      {{date-range (schedule-date) (schedule-date last=true)}}
+    </div>
+  </div>
+  <div class="l-app__actions l-app__actions--right">
     <button type="button" class="l-app__action l-app__action--settings"
       title="Settings"
       {{on "click" (settings)}}
@@ -14,9 +44,6 @@
       <span class="l-app__action-text l-app__action-text--settings"
       >Settings</span>
     </button>
-    <div class="l-app__action-icon l-app__action-icon--settings"
-      title="Settings">
-    </div>
   </div>
 </header>
 <div class="l-app__content">

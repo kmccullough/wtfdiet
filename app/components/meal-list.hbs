@@ -60,7 +60,7 @@
 
           {{#each this.attendees as |attendee|}}
             {{#let
-              (hash)
+              (context)
               (get meal.favor attendee.id)
             as | attendeeCtx favor |}}
 
@@ -128,7 +128,7 @@
             {{/let}}
           {{/each}}
 
-          {{#let (hash) as |attendeesCtx|}}
+          {{#let (context) as |attendeesCtx|}}
           <button type="button" class="c-meal-list__attendee"
             title="Click to add someone's favor"
             {{did-insert (set attendeesCtx "button")}}
@@ -141,7 +141,7 @@
               <ul class="c-popup-menu">
                 <li class="c-popup-menu__heading">Add Attendee Favor</li>
                 {{#each this.attendees as |attendee|}}
-                  {{#let (hash) as |attendeeCtx|}}
+                  {{#let (context) as |attendeeCtx|}}
                     <li class="c-popup-menu__item">
                       <button type="button" class="c-popup-menu__button"
                         title="Click to add attendee favor"

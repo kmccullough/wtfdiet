@@ -1,17 +1,17 @@
 <div class="c-meal-plan-schedule">
-  {{#each (schedule-dates) as |date|}}
-    {{#let (get this.plansById (date-key date)) as |plan|}}
+  {{#each (schedule-dates) key="key" as |date|}}
+    {{#let (get this.plansById (date-key date.value)) as |plan|}}
       {{#if (or plan "displayEmptyDays")}}
         <div class="c-meal-plan-schedule__meal {{unless plan "c-meal-plan-schedule__meal--empty"}}">
           <span class="c-meal-plan-schedule__date">
             <span class="c-meal-plan-schedule__date-day">
-              {{~day-month date~}}
+              {{~day-month date.value~}}
             </span>
             <span class="c-meal-plan-schedule__date-month">
-              {{~month-short date~}}
+              {{~month-short date.value~}}
             </span>,
             <span class="c-meal-plan-schedule__date-day-week">
-              {{~day-week-short date~}}
+              {{~day-week-short date.value~}}
             </span>
           </span>
           {{#each this.slots as |slot|}}
@@ -24,7 +24,7 @@
                     <button type="button"
                       class="c-meal-plan-schedule__action c-meal-plan-schedule_action--randomize"
                       title="Randomize Scheduled Meal"
-                      {{on "click" (meal-randomize date slot)}}
+                      {{on "click" (meal-randomize date.value slot)}}
                     >
                       <svg class="c-meal-plan-schedule__action-icon c-meal-plan-schedule__action-icon--randomize"
                         width="14" height="14">
@@ -36,7 +36,7 @@
                     <button type="button"
                       class="c-meal-plan-schedule__action c-meal-plan-schedule_action--pin"
                       title="Pin Meal to Schedule"
-                      {{on "click" (pin-meal meal.id date)}}
+                      {{on "click" (pin-meal meal.id date.value)}}
                     >
                       <svg class="c-meal-plan-schedule__action-icon c-meal-plan-schedule__action-icon--pin"
                         width="14" height="14">
@@ -47,13 +47,13 @@
                     </button>
                   </span>
                   <span class="c-meal-plan-schedule__meal-name">
-                    <MealSelect @meal={{meal}} @date={{date}} @slot={{slot}} />
+                    <MealSelect @meal={{meal}} @date={{date.value}} @slot={{slot}} />
                   </span>
                   <span class="c-meal-plan-schedule__meal-tags"><MealTags @meal={{meal}} /></span>
                   <span class="c-meal-plan-schedule__attendees">
                     {{#each this.attendees as |attendee|}}
                       {{#let
-                        (hash)
+                        (context)
                         (get meal.favor attendee.id)
                       as |attendeeCtx favor|}}
                       {{!
@@ -75,7 +75,7 @@
                           (if attendee.color (concat "background-color: " attendee.color))
                         }}
                         title="Click to remove attendee &quot;{{attendee.name}}&quot;"
-                        {{on "click" (unattend-meal date attendee)}}
+                        {{on "click" (unattend-meal date.value attendee)}}
                       >
                         {{~initial attendee.name~}}
                         {{#if (eq favor "5")}}
@@ -117,7 +117,7 @@
                                 {{did-insert (append-one attendeeCtx.menu)}}
                                 {{on "click" (queue
                                   attendeeCtx.addPopup.close
-                                  (attend-meal date attendee)
+                                  (attend-meal date.value attendee)
                                 )}}
                               >
                                 Add {{attendee.name}}
@@ -129,7 +129,7 @@
                       {{/if}}
                       {{/let}}
                     {{/each}}
-                    {{#let (hash) as |attendeesCtx|}}
+                    {{#let (context) as |attendeesCtx|}}
                     <button type="button" class="c-meal-plan-schedule__attendee"
                       title="Click to add attendee"
                       {{did-insert (set attendeesCtx "button")}}
@@ -147,7 +147,7 @@
                                 title="Click to add attendee"
                                 {{on "click" (queue
                                   attendeesCtx.addPopup.close
-                                  (attend-meal date attendee)
+                                  (attend-meal date.value attendee)
                                 )}}
                               >
                                 Add {{attendee.name}}

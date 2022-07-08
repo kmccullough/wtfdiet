@@ -1,10 +1,10 @@
-{{#let (hash) as | ctx |}}
+{{#let (context) as | ctx |}}
 
 <ol class="c-sortable-list"
  {{sortable-group onChange=(fnx @onChange)}}
 >
   {{#each @list as |item|}}
-    {{yield (hash
+    {{yield (context
       item=(component "sortable-list-item"
         item=item
         dragContainer=dragContainer

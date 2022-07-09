@@ -60,7 +60,6 @@ export default class DocumentEventsService extends Service {
     const isAllowedElement = isAnyElDescendentOfAnyEl(e.target, mask.elements);
     const maskFrees = true;
     if (!isAllowedElement) {
-      console.log(1, isAllowedElement);
       e.preventDefault();
       e.stopImmediatePropagation();
       if (maskFrees) {
@@ -79,7 +78,6 @@ export default class DocumentEventsService extends Service {
     const mask = this.mouseMasks[length - 1];
     const isAllowedElement = isAnyElDescendentOfAnyEl(e.target, mask.elements);
     if (!isAllowedElement) {
-      console.log(2, isAllowedElement);
       e.preventDefault();
       e.stopImmediatePropagation();
     }

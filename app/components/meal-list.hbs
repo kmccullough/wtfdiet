@@ -100,7 +100,7 @@
 
               {{#if attendeeCtx.popup}}
                 <Popup @target={{attendeeCtx.button}} @open={{true}}
-                  @masked={{array attendeesCtx.masked}}
+                  @masked={{array attendeeCtx.masked}}
                   @didInsert={{set attendeeCtx "addPopup"}}
                   @onClose={{set attendeeCtx "popup" false}}
                 >

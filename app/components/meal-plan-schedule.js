@@ -18,6 +18,11 @@ export default class MealPlanScheduleComponent extends Component {
   }
 
   @cached
+  get attendeesById() {
+    return this.attendeeService.attendeesById;
+  }
+
+  @cached
   get slots() {
     return this.slotService.slots;
   }

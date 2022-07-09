@@ -51,11 +51,11 @@
                   </span>
                   <span class="c-meal-plan-schedule__meal-tags"><MealTags @meal={{meal}} /></span>
                   <span class="c-meal-plan-schedule__attendees">
-                    {{#each this.attendees as |attendee|}}
+                    {{#each slotPlan.attendees as |attendeeId|}}
                       {{#let
-                        (context)
-                        (get meal.favor attendee.id)
-                      as |attendeeCtx favor|}}
+                        (get this.attendeesById attendeeId)
+                        (get meal.favor attendeeId)
+                      as | attendee favor |}}
                       {{!
                         TODO 1. button focused (gains control)
                              2. popup popped
@@ -75,7 +75,7 @@
                           (if attendee.color (concat "background-color: " attendee.color))
                         }}
                         title="Click to remove attendee &quot;{{attendee.name}}&quot;"
-                        {{on "click" (unattend-meal date.value attendee)}}
+                        {{on "click" (meal-unattend date.value slot attendee)}}
                       >
                         {{~initial attendee.name~}}
                         {{#if (eq favor "5")}}
@@ -104,29 +104,6 @@
                           />
                         {{/if}}
                       </button>
-                      {{#if attendeeCtx.popupAdd}}
-                        <Popup @target={{attendeeCtx.button}} @open={{true}}
-                          @didInsert={{set attendeeCtx "addPopup"}}
-                          @onClose={{set attendeeCtx "popupAdd" false}}>
-                        <ul class="c-popup-menu">
-                          <li class="c-popup-menu__heading">Add Attendee</li>
-                          {{#each this.attendees as |attendee $index|}}
-                            <li class="c-popup-menu__item">
-                              <button type="button" class="c-popup-menu__button"
-                                title="Click to add attendee"
-                                {{did-insert (append-one attendeeCtx.menu)}}
-                                {{on "click" (queue
-                                  attendeeCtx.addPopup.close
-                                  (attend-meal date.value attendee)
-                                )}}
-                              >
-                                Add {{attendee.name}}
-                              </button>
-                            </li>
-                          {{/each}}
-                        </ul>
-                      </Popup>
-                      {{/if}}
                       {{/let}}
                     {{/each}}
                     {{#let (context) as |attendeesCtx|}}
@@ -147,7 +124,7 @@
                                 title="Click to add attendee"
                                 {{on "click" (queue
                                   attendeesCtx.addPopup.close
-                                  (attend-meal date.value attendee)
+                                  (meal-attend date.value slot attendee)
                                 )}}
                               >
                                 Add {{attendee.name}}

@@ -54,56 +54,6 @@
     padding-top: .25rem;
   }
 
-  &__attendee {
-    @include attendee-colors(#ccc);
-    position: relative;
-    $size: 1.2rem;
-    $border-size: 1px;
-    display: inline-block;
-    text-align: center;
-    width: $size;
-    height: $size;
-    line-height: $size;
-    font-size: $size * .6;
-    border-radius: calc(#{px($size)} / 2 + #{px($border-size)} * 2);
-    border: $border-size solid rgba(0, 0, 0, .3);
-    cursor: pointer;
-    outline: none;
-    padding: 0;
-    margin: 0 $size * .3 0 0;
-
-    &:hover {
-      border-color: rgba(0, 0, 0, .8);
-    }
-
-    &-favor {
-      position: absolute;
-      right: -$size * .5;
-      background-color: white;
-      border: 1px solid white;
-      border-radius: 50%;
-      width: 0.5rem;
-      height: 0.5rem;
-      padding: 2px;
-
-      :where(.c-icon__image) {
-        width: 0.5rem;
-        height: 0.5rem;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-
-    &-favor {
-      top: -20%;
-      fill: #fff;
-      color: #fff;
-      background: #444;
-    }
-  }
-
   &__meal-actions {
     float: right;
   }

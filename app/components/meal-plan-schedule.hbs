@@ -52,10 +52,7 @@
                   <span class="c-meal-plan-schedule__meal-tags"><MealTags @meal={{meal}} /></span>
                   <span class="c-meal-plan-schedule__attendees">
                     {{#each slotPlan.attendees as |attendeeId|}}
-                      {{#let
-                        (get this.attendeesById attendeeId)
-                        (get meal.favor attendeeId)
-                      as | attendee favor |}}
+                      {{#let (get this.attendeesById attendeeId) as |attendee|}}
                       {{!
                         TODO 1. button focused (gains control)
                              2. popup popped
@@ -70,48 +67,23 @@
                              7d. if enter/space focused can be activated
                              8. on blur of button (mouse) needs to only hide
                       }}
-                      <button type="button" class="c-meal-plan-schedule__attendee c-meal-plan-schedule__attendee--favor"
-                        style={{trusted-html
-                          (if attendee.color (concat "background-color: " attendee.color))
-                        }}
+                      <MealFavorButton
                         title="Click to remove attendee &quot;{{attendee.name}}&quot;"
-                        {{on "click" (meal-unattend date.value slot attendee)}}
-                      >
-                        {{~initial attendee.name~}}
-                        {{#if (eq favor "5")}}
-                          <Icon @icon="favor-love"
-                            class="c-meal-list__attendee-favor"
-                          />
-                        {{else if (eq favor "4")}}
-                          <Icon @icon="favor-like"
-                            class="c-meal-list__attendee-favor"
-                          />
-                        {{else if (eq favor "3")}}
-                          <Icon @icon="favor-accept"
-                            class="c-meal-list__attendee-favor"
-                          />
-                        {{else if (eq favor "2")}}
-                          <Icon @icon="favor-dislike"
-                            class="c-meal-list__attendee-favor"
-                          />
-                        {{else if (eq favor "1")}}
-                          <Icon @icon="favor-reject"
-                            class="c-meal-list__attendee-favor"
-                          />
-                        {{else}}
-                          <Icon @icon="favor-unknown"
-                            class="c-meal-list__attendee-favor"
-                          />
-                        {{/if}}
-                      </button>
+                        @noMeal={{not slotPlan.meal}}
+                        @attendee={{attendee}}
+                        @meal={{meal}}
+                        @onClick={{meal-unattend date.value slot attendee}}
+                      />
                       {{/let}}
                     {{/each}}
                     {{#let (context) as |attendeesCtx|}}
-                    <button type="button" class="c-meal-plan-schedule__attendee"
+
+                    <MealFavorButton
                       title="Click to add attendee"
-                      {{did-insert (set attendeesCtx "button")}}
-                      {{on "click" (set attendeesCtx "popupAdd" true)}}
-                    >...</button>
+                      @meal={{meal}}
+                      @didInsert={{set attendeesCtx "button"}}
+                      @onClick={{set attendeesCtx "popupAdd" true}}
+                    />
                     {{#if attendeesCtx.popupAdd}}
                       <Popup @target={{attendeesCtx.button}} @open={{true}}
                         @didInsert={{set attendeesCtx "addPopup"}}

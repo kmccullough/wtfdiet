@@ -1,0 +1,42 @@
+{{#let (get @meal.favor @attendee.id) as |favor|}}
+<button type="button" class="
+    c-meal-favor-button
+    {{if (or @noMeal (not @attendee)) "c-meal-favor-button--no-meal"}}
+  "
+  style={{trusted-html
+    (if @attendee.color (concat "background-color: " @attendee.color))
+  }}
+  {{did-insert (fnx @didInsert)}}
+  {{on "click" (fnx @onClick)}}
+  title="Click to change favor from &quot;{{@attendee.name}}&quot;"
+  ...attributes
+>
+  {{~if @attendee (initial @attendee.name) "..."~}}
+  {{#if (eq favor "5")}}
+    <Icon @icon="favor-love"
+      class="c-meal-favor-button__favor"
+    />
+  {{else if (eq favor "4")}}
+    <Icon @icon="favor-like"
+      class="c-meal-favor-button__favor"
+    />
+  {{else if (eq favor "3")}}
+    <Icon @icon="favor-accept"
+      class="c-meal-favor-button__favor"
+    />
+  {{else if (eq favor "2")}}
+    <Icon @icon="favor-dislike"
+      class="c-meal-favor-button__favor"
+    />
+  {{else if (eq favor "1")}}
+    <Icon @icon="favor-reject"
+      class="c-meal-favor-button__favor"
+    />
+  {{else if (and @attendee (not @noMeal))}}
+    <Icon @icon="favor-unknown"
+      class="c-meal-favor-button__favor"
+    />
+  {{/if}}
+</button>
+{{/let}}
+{{yield}}

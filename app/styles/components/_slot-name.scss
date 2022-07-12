@@ -4,7 +4,13 @@
 @import '../mixins/positioning';
 
 .c-slot-name {
+  display: inline-block;
   text-transform: uppercase;
   font-size: .8em;
   font-weight: bold;
+  width: 6rem;
+
+  @media screen and (max-width: 900px) {
+    display: block;
+  }
 }

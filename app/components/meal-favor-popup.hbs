@@ -1,0 +1,21 @@
+{{#let (context) as |ctx|}}
+<Popup @target={{@target}} @masked={{@masked}} @open={{@open}}
+  @didInsert={{queue (set ctx "popup") (fnx @didInsert)}}
+  @onClose={{fnx @onClose}}
+>
+  <ul class="c-popup-menu">
+    <li class="c-popup-menu__heading">Favor</li>
+    {{#each (favors) as |favor|}}
+      <li class="c-popup-menu__item">
+        <button type="button" class="c-popup-menu__button"
+          title="Click to {{favor.name}} meal"
+          {{on "click" (queue ctx.popup.close (fnx @onSelect favor))}}
+        >
+          {{favor.name}}
+        </button>
+      </li>
+    {{/each}}
+  </ul>
+</Popup>
+{{/let}}
+{{yield}}

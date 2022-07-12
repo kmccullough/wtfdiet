@@ -9,8 +9,9 @@ export default class extends Helper {
 
   @inject meals;
 
-  compute([ meal, attendee, favor ]) {
-    return () => {
+  compute([ ...args ]) {
+    return (...moreArgs) => {
+      const [ meal, attendee, favor ] = [ ...args, ...moreArgs ];
       const m = this.meals.mealsById[meal.id];
       if (!m.favor) {
         m.favor = {};

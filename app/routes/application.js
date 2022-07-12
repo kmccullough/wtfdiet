@@ -14,6 +14,12 @@ export default class ApplicationRoute extends Route {
 
   model(params) {
     this.sideBar.processParams(params);
+
+    if (document) {
+      const { side } = this.sideBar;
+      document.body.classList[ side ? 'add' : 'remove' ]('l-visible--side-bar');
+    }
+
     return {
       modal: params.modal,
       modalId: params['modal-id'],

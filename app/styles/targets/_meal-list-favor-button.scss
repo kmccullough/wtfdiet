@@ -1,0 +1,19 @@
+@import '../functions/units';
+@import '../mixins/attendees';
+@import '../mixins/buttons';
+@import '../mixins/positioning';
+
+:where(.c-meal-list) .c-meal-favor-button {
+  $size: 1.2rem;
+  $border-size: 1px;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  font-size: $size * .6;
+  border-radius: calc(#{px($size)} / 2 + #{px($border-size)} * 2);
+  margin: 0 $size * .2 0 0;
+
+  &__favor {
+    right: -$size * .5;
+  }
+}

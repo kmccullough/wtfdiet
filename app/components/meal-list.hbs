@@ -62,78 +62,33 @@
             {{#let
               (context)
               (get meal.favor attendee.id)
-            as | attendeeCtx favor |}}
-
-            {{#if (not-accept-favor favor)}}
-
-              <button type="button" class="c-meal-list__attendee"
-                style={{trusted-html
-                  (if attendee.color (concat "background-color: " attendee.color))
-                }}
-                title="Click to remove favorite from &quot;{{attendee.name}}&quot;"
-                {{did-insert (set attendeeCtx "button")}}
-                {{on "click" (set attendeeCtx "popup" true)}}
-              >
-                {{~initial attendee.name~}}
-                {{#if (eq favor "5")}}
-                  <Icon @icon="favor-love"
-                    class="c-meal-list__attendee-favor"
-                  />
-                {{else if (eq favor "4")}}
-                  <Icon @icon="favor-like"
-                    class="c-meal-list__attendee-favor"
-                  />
-                {{else if (eq favor "2")}}
-                  <Icon @icon="favor-dislike"
-                    class="c-meal-list__attendee-favor"
-                  />
-                {{else if (eq favor "1")}}
-                  <Icon @icon="favor-reject"
-                    class="c-meal-list__attendee-favor"
-                  />
-                {{else}}
-                  <Icon @icon="favor-unknown"
-                    class="c-meal-list__attendee-favor"
-                  />
-                {{/if}}
-              </button>
-
-              {{#if attendeeCtx.popup}}
-                <Popup @target={{attendeeCtx.button}} @open={{true}}
-                  @masked={{array attendeeCtx.masked}}
-                  @didInsert={{set attendeeCtx "addPopup"}}
-                  @onClose={{set attendeeCtx "popup" false}}
-                >
-                  <ul class="c-popup-menu">
-                    <li class="c-popup-menu__heading">Favor</li>
-                    {{#each this.favors as |favor|}}
-                      <li class="c-popup-menu__item">
-                        <button type="button" class="c-popup-menu__button"
-                          title="Click to {{favor.name}} meal"
-                          {{on "click" (queue
-                            attendeeCtx.addPopup.close
-                            (favor-meal meal attendee favor)
-                          )}}
-                        >
-                          {{favor.name}}
-                        </button>
-                      </li>
-                    {{/each}}
-                  </ul>
-                </Popup>
-              {{/if}}
-
-            {{/if}}
-
+            as | changeAttendeeCtx favor |}}
+            <MealFavorButton
+              @attendee={{attendee}}
+              @meal={{meal}}
+              @didInsert={{set changeAttendeeCtx "button"}}
+              @onClick={{set changeAttendeeCtx "popup" true}}
+            />
+            <MealFavorPopup
+              @target={{changeAttendeeCtx.button}}
+              @open={{changeAttendeeCtx.popup}}
+              @didInsert={{set changeAttendeeCtx "changePopup"}}
+              @onClose={{set changeAttendeeCtx "popup" false}}
+              @onSelect={{queue
+                changeAttendeeCtx.changePopup.close
+                (favor-meal meal attendee)
+              }}
+            />
             {{/let}}
           {{/each}}
 
           {{#let (context) as |attendeesCtx|}}
-          <button type="button" class="c-meal-list__attendee"
-            title="Click to add someone's favor"
-            {{did-insert (set attendeesCtx "button")}}
-            {{on "click" (set attendeesCtx "popup" true)}}
-          >...</button>
+            <MealFavorButton
+              title="Click to add someone's favor"
+              @meal={{meal}}
+              @didInsert={{set attendeesCtx "button"}}
+              @onClick={{set attendeesCtx "popup" true}}
+            />
           {{#if attendeesCtx.popup}}
             <Popup @target={{attendeesCtx.button}} @open={{true}}
               @didInsert={{set attendeesCtx "addPopup"}}
@@ -141,39 +96,26 @@
               <ul class="c-popup-menu">
                 <li class="c-popup-menu__heading">Add Attendee Favor</li>
                 {{#each this.attendees as |attendee|}}
-                  {{#let (context) as |attendeeCtx|}}
+                  {{#let (context) as |newAttendeeCtx|}}
                     <li class="c-popup-menu__item">
                       <button type="button" class="c-popup-menu__button"
                         title="Click to add attendee favor"
-                        {{did-insert (set attendeeCtx "button")}}
-                        {{on "click" (set attendeeCtx "popup" true)}}
+                        {{did-insert (set newAttendeeCtx "button")}}
+                        {{on "click" (set newAttendeeCtx "popup" true)}}
                       >
                         {{attendee.name}}
                       </button>
-                      {{#if attendeeCtx.popup}}
-                        <Popup @target={{attendeeCtx.button}} @open={{true}}
-                          @masked={{array attendeesCtx.masked}}
-                          @didInsert={{set attendeeCtx "addPopup"}}
-                          @onClose={{set attendeeCtx "popup" false}}>
-                          <ul class="c-popup-menu">
-                            <li class="c-popup-menu__heading">Favor</li>
-                            {{#each this.favors as |favor|}}
-                              <li class="c-popup-menu__item">
-                                <button type="button" class="c-popup-menu__button"
-                                  title="Click to {{favor.name}} meal"
-                                  {{on "click" (queue
-                                    attendeesCtx.addPopup.close
-                                    attendeeCtx.addPopup.close
-                                    (favor-meal meal attendee favor)
-                                  )}}
-                                >
-                                  {{favor.name}}
-                                </button>
-                              </li>
-                            {{/each}}
-                          </ul>
-                        </Popup>
-                      {{/if}}
+                      <MealFavorPopup
+                        @target={{newAttendeeCtx.button}}
+                        @masked={{array attendeesCtx.masked}}
+                        @open={{newAttendeeCtx.popup}}
+                        @didInsert={{set newAttendeeCtx "addPopup"}}
+                        @onClose={{set newAttendeeCtx "popup" false}}
+                        @onSelect={{queue
+                          attendeesCtx.addPopup.close
+                          (favor-meal meal attendee)
+                        }}
+                      />
                     </li>
                   {{/let}}
                 {{/each}}

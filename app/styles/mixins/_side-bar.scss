@@ -1,103 +1,13 @@
-@import '../functions/units';
-@import '../mixins/attendees';
-@import '../mixins/buttons';
-@import '../mixins/positioning';
+@import '../variables';
 
-.c-side-bar {
+@mixin c-sidebar__content-container {
   display: grid;
-  grid-template-columns: 48px min-content;
-  grid-template-areas: 'selector content';
+  grid-template-rows: min-content auto;
   overflow: hidden;
   width: 100%;
   height: 100%;
+}
 
-  &__selector {
-    grid-area: selector;
-    border-left: 1px solid #888;
-    height: 100%;
-    text-align: center;
-    background-color: #eee;
-
-    &-action {
-      box-sizing: content-box;
-      $border-width: 1px;
-      $size: 24px;
-      $padding: 7px;
-      $color: rgba(0, 0, 0, .7);
-      color: $color;
-      fill: $color;
-      display: block;
-      width: $size;
-      height: $size;
-      padding: $padding;
-      margin: .5rem auto 0 auto;
-      line-height: $size;
-      border: $border-width solid rgba(0, 0, 0, 0);
-      border-radius: calc(#{px($size)} / 2 + #{px($padding)} + #{px($border-width)});
-      cursor: pointer;
-      outline: none;
-      background-color: transparent;
-
-      &:hover {
-        $color: rgba(0, 0, 0, .9);
-        color: $color;
-        fill: $color;
-        background-color: rgba(238, 170, 102, .1);
-        border-color: rgba(0, 0, 0, .4);
-      }
-
-      &--selected {
-        $border-width: 4px;
-        $padding: 4px;
-        $color: rgba(0, 0, 0, 1);
-        color: $color;
-        fill: $color;
-        padding: $padding;
-        border-width: $border-width;
-        background-color: rgba(238, 170, 102, .4);
-        //border-color: rgba(238, 170, 102, .5);
-        border-color: rgba(187, 119, 51, .5);
-        border-radius: calc(#{px($size)} / 2 + #{px($padding)} + #{px($border-width)});
-
-        &:hover {
-          $color: rgba(0, 0, 0, .7);
-          color: $color;
-          fill: $color;
-          background-color: rgba(238, 170, 102, .3);
-          //border-color: rgba(187, 119, 51, .8);
-          border-color: rgba(238, 170, 102, .5);
-        }
-      }
-    }
-
-    &-text {
-      display: none;
-    }
-
-  }
-
-  &__content {
-    grid-area: content;
-    border-left: 1px solid #888;
-    overflow: hidden;
-    height: 100%;
-    width: 320px;
-
-    &--closed {
-      display: none;
-    }
-
-    &-container {
-      display: grid;
-      grid-template-rows: min-content auto;
-      overflow: hidden;
-      width: 100%;
-      height: 100%;
-    }
-    &-header {
-    }
-    &-scrollable {
-      overflow-y: auto;
-    }
-  }
+@mixin c-sidebar__content-scrollable {
+  overflow-y: auto;
 }

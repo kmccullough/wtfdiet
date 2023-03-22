@@ -1,7 +1,9 @@
+@import '../variables';
 @import '../functions/units';
 @import '../mixins/attendees';
 @import '../mixins/buttons';
 @import '../mixins/positioning';
+@import '../mixins/side-bar';
 
 .c-side-bar {
   display: grid;
@@ -79,12 +81,21 @@
   &__content {
     grid-area: content;
     border-left: 1px solid #888;
-    overflow: auto;
+    overflow: hidden;
     height: 100%;
-    width: 320px;
+    width: $c-side-bar__content-width;
 
     &--closed {
       display: none;
+    }
+
+    &-container {
+      @include c-sidebar__content-container;
+    }
+    &-header {
+    }
+    &-scrollable {
+      @include c-sidebar__content-scrollable;
     }
   }
 }

@@ -1,12 +1,16 @@
 @use 'sass:color';
 
 @mixin button-colors($color) {
-  $transparency: 40%;
-  $color-transparent: color.scale($color, $alpha: -$transparency);
-  color: $color-transparent;
-  fill: $color-transparent;
-  &:hover {
-    color: $color;
-    fill: $color;
+  &:where(button, a),
+  & :where(button, a) {
+    $transparency: 40%;
+    $color-transparent: color.scale($color, $alpha: -$transparency);
+    color: $color-transparent;
+    fill: $color-transparent;
+
+    &:hover {
+      color: $color;
+      fill: $color;
+    }
   }
 }

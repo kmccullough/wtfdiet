@@ -9,5 +9,12 @@ export const config = {
     'favor-reject':  'close',
     'favor-unknown': 'question',
   },
+  navigation: [
+    { name: 'Home',      icon: 'dashboard-icon', route: 'index',    side: false },
+    { name: 'Schedule',  icon: 'schedule-icon',  route: 'schedule', side: false },
+    { name: 'Meals',     icon: 'meal-icon',      route: 'meals' },
+    { name: 'Attendees', icon: 'attendees-icon', route: 'attendees' },
+    { name: 'Slots',     icon: 'slots-icon',     route: 'slots' },
+  ],
 }
 export default config;

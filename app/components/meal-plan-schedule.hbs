@@ -1,121 +1,162 @@
 <div class="c-meal-plan-schedule">
-  {{#each (schedule-dates) key="key" as |date|}}
-    {{#let (get this.plansById (date-key date.value)) as |plan|}}
-      {{#if (or plan "displayEmptyDays")}}
-        <div class="c-meal-plan-schedule__meal {{unless plan "c-meal-plan-schedule__meal--empty"}}">
-          <span class="c-meal-plan-schedule__date">
-            <span class="c-meal-plan-schedule__date-day">
-              {{~day-month date.value~}}
-            </span>
-            <span class="c-meal-plan-schedule__date-month">
-              {{~month-short date.value~}}
-            </span>,
-            <span class="c-meal-plan-schedule__date-day-week">
-              {{~day-week-short date.value~}}
-            </span>
-          </span>
-          {{#each this.slots as |slot|}}
-            {{#let (get plan slot.id) as |slotPlan|}}
-              {{#if (or slotPlan "displayEmptySlots")}}
-                {{#let (get this.mealsById slotPlan.meal) as |meal|}}
-                <span class="c-plan-slot">
-                  <span class="c-slot-name">{{slot.name}}</span>
-                  <span class="c-meal-plane-schedule__left-actions">
-                    <button type="button"
-                      class="c-meal-plan-schedule__action c-meal-plan-schedule_action--randomize"
-                      title="Randomize Scheduled Meal"
-                      {{on "click" (meal-randomize date.value slot)}}
-                    >
-                      <svg class="c-meal-plan-schedule__action-icon c-meal-plan-schedule__action-icon--randomize"
-                        width="14" height="14">
-                        <use xlink:href="#randomize-icon"></use>
-                      </svg>
-                      <span class="c-meal-list__action-text c-meal-list__action-text--randomize"
-                      >Randomize Scheduled Meal</span>
-                    </button>
-                    <button type="button"
-                      class="c-meal-plan-schedule__action c-meal-plan-schedule_action--pin"
-                      title="Pin Meal to Schedule"
-                      {{on "click" (pin-meal meal.id date.value)}}
-                    >
-                      <svg class="c-meal-plan-schedule__action-icon c-meal-plan-schedule__action-icon--pin"
-                        width="14" height="14">
-                        <use xlink:href="#{{trusted-html (if meal.pinned "pinned" "pin")}}-icon"></use>
-                      </svg>
-                      <span class="c-meal-list__action-text c-meal-list__action-text--pin"
-                      >Pin Meal to Schedule</span>
-                    </button>
-                  </span>
-                  <span class="c-meal-plan-schedule__meal-name">
-                    <MealSelect @meal={{meal}} @date={{date.value}} @slot={{slot}} />
-                  </span>
-                  <span class="c-meal-plan-schedule__meal-tags"><MealTags @meal={{meal}} /></span>
-                  <span class="c-meal-plan-schedule__attendees">
-                    {{#each slotPlan.attendees as |attendeeId|}}
-                      {{#let (get this.attendeesById attendeeId) as |attendee|}}
-                      {{!
-                        TODO 1. button focused (gains control)
-                             2. popup popped
-                             3. when up or down key press popup gains focus control
-                             4. when up or down key press popup moves focused element
-                             5. when encounters submenu, submenu popped
-                             6. when left or right key pressed submenu gains focus control
-                             7a. if escape key close one or all popups
-                             7b. if tab/shift+tab close all popups, return control to
-                                 button, button focuses next thing in tab order
-                             7c. if left/right past edges return control to upper menu
-                             7d. if enter/space focused can be activated
-                             8. on blur of button (mouse) needs to only hide
-                      }}
-                      <MealFavorButton
-                        title="Click to remove attendee &quot;{{attendee.name}}&quot;"
-                        @noMeal={{not slotPlan.meal}}
-                        @attendee={{attendee}}
-                        @meal={{meal}}
-                        @onClick={{meal-unattend date.value slot attendee}}
-                      />
-                      {{/let}}
-                    {{/each}}
-                    {{#let (context) as |attendeesCtx|}}
 
-                    <MealFavorButton
-                      title="Click to add attendee"
-                      @meal={{meal}}
-                      @didInsert={{set attendeesCtx "button"}}
-                      @onClick={{set attendeesCtx "popupAdd" true}}
-                    />
-                    {{#if attendeesCtx.popupAdd}}
-                      <Popup @target={{attendeesCtx.button}} @open={{true}}
-                        @didInsert={{set attendeesCtx "addPopup"}}
-                        @onClose={{set attendeesCtx "popupAdd" false}}>
-                        <ul class="c-popup-menu">
-                          <li class="c-popup-menu__heading">Add Attendee</li>
-                          {{#each this.attendees as |attendee|}}
-                            <li class="c-popup-menu__item">
-                              <button type="button" class="c-popup-menu__button"
-                                title="Click to add attendee"
-                                {{on "click" (queue
-                                  attendeesCtx.addPopup.close
-                                  (meal-attend date.value slot attendee)
-                                )}}
-                              >
-                                Add {{attendee.name}}
-                              </button>
-                            </li>
-                          {{/each}}
-                        </ul>
-                      </Popup>
-                    {{/if}}
-                    {{/let}}
+  <div class="c-meal-plan-schedule__header">
+
+    <h2 class="c-meal-plan-schedule__heading">Schedule</h2>
+    <div class="c-meal-plan-schedule__header-actions">
+      <LinkTo class="c-meal-plan-schedule__action c-meal-plan-schedule__action--today"
+        @route="schedule"
+        title="Today"
+      >
+        <span class="c-meal-plan-schedule__action-text c-meal-plan-schedule__action-text--alone c-meal-plan-schedule__action-text--today"
+        >Today</span>
+      </LinkTo>
+      <LinkTo type="button" class="c-meal-plan-schedule__action c-meal-plan-schedule__action--prev"
+        @route="schedule.year.month.day"
+        @models={{schedule-date array=true prev=true}}
+        title="Previous day"
+      >
+        <Icon @icon="arrow-left" />
+        <span class="c-meal-plan-schedule__action-text c-meal-plan-schedule__action-text--prev"
+        >Previous day</span>
+      </LinkTo>
+      <LinkTo type="button" class="c-meal-plan-schedule__action c-meal-plan-schedule__action--next"
+        @route="schedule.year.month.day"
+        @models={{schedule-date array=true next=true}}
+        title="Next day"
+      >
+        <Icon @icon="arrow-right" />
+        <span class="c-meal-plan-schedule__action-text c-meal-plan-schedule__action-text--next"
+        >Next day</span>
+      </LinkTo>
+      <h3 class="c-meal-plan-schedule__date">
+        {{date-range (schedule-date) (schedule-date last=true)}}
+      </h3>
+    </div>
+
+  </div>
+
+  <div class="c-meal-plan-schedule__list">
+
+    {{#each (schedule-dates) key="key" as |date|}}
+      {{#let (get this.plansById (date-key date.value)) as |plan|}}
+        {{#if (or plan "displayEmptyDays")}}
+          <div class="c-meal-plan-schedule__meal-day {{unless plan "c-meal-plan-schedule__meal-day--empty"}}">
+            <span class="c-meal-plan-schedule__meal-day-date">
+              <span class="c-meal-plan-schedule__date-day">
+                {{~day-month date.value~}}
+              </span>
+              <span class="c-meal-plan-schedule__meal-day-date-month">
+                {{~month-short date.value~}}
+              </span>,
+              <span class="c-meal-plan-schedule__meal-day-date-day-week">
+                {{~day-week-short date.value~}}
+              </span>
+            </span>
+            {{#each this.slots as |slot|}}
+              {{#let (get plan slot.id) as |slotPlan|}}
+                {{#if (or slotPlan "displayEmptySlots")}}
+                  {{#let (get this.mealsById slotPlan.meal) as |meal|}}
+                  <span class="c-plan-slot">
+                    <span class="c-slot-name">{{slot.name}}</span>
+                    <span class="c-meal-plane-schedule__left-actions">
+                      <button type="button"
+                        class="c-meal-plan-schedule__action c-meal-plan-schedule_action--randomize"
+                        title="Randomize Scheduled Meal"
+                        {{on "click" (meal-randomize date.value slot)}}
+                      >
+                        <svg class="c-meal-plan-schedule__action-icon c-meal-plan-schedule__action-icon--randomize"
+                          width="14" height="14">
+                          <use xlink:href="#randomize-icon"></use>
+                        </svg>
+                        <span class="c-meal-list__action-text c-meal-list__action-text--randomize"
+                        >Randomize Scheduled Meal</span>
+                      </button>
+                      <button type="button"
+                        class="c-meal-plan-schedule__action c-meal-plan-schedule_action--pin"
+                        title="Pin Meal to Schedule"
+                        {{on "click" (pin-meal meal.id date.value)}}
+                      >
+                        <svg class="c-meal-plan-schedule__action-icon c-meal-plan-schedule__action-icon--pin"
+                          width="14" height="14">
+                          <use xlink:href="#{{trusted-html (if meal.pinned "pinned" "pin")}}-icon"></use>
+                        </svg>
+                        <span class="c-meal-list__action-text c-meal-list__action-text--pin"
+                        >Pin Meal to Schedule</span>
+                      </button>
+                    </span>
+                    <span class="c-meal-plan-schedule__meal-name">
+                      <MealSelect @meal={{meal}} @date={{date.value}} @slot={{slot}} />
+                    </span>
+                    <span class="c-meal-plan-schedule__meal-tags"><MealTags @meal={{meal}} /></span>
+                    <span class="c-meal-plan-schedule__attendees">
+                      {{#each slotPlan.attendees as |attendeeId|}}
+                        {{#let (get this.attendeesById attendeeId) as |attendee|}}
+                        {{!
+                          TODO 1. button focused (gains control)
+                               2. popup popped
+                               3. when up or down key press popup gains focus control
+                               4. when up or down key press popup moves focused element
+                               5. when encounters submenu, submenu popped
+                               6. when left or right key pressed submenu gains focus control
+                               7a. if escape key close one or all popups
+                               7b. if tab/shift+tab close all popups, return control to
+                                   button, button focuses next thing in tab order
+                               7c. if left/right past edges return control to upper menu
+                               7d. if enter/space focused can be activated
+                               8. on blur of button (mouse) needs to only hide
+                        }}
+                        <MealFavorButton
+                          title="Click to remove attendee &quot;{{attendee.name}}&quot;"
+                          @noMeal={{not slotPlan.meal}}
+                          @attendee={{attendee}}
+                          @meal={{meal}}
+                          @onClick={{meal-unattend date.value slot attendee}}
+                        />
+                        {{/let}}
+                      {{/each}}
+                      {{#let (context) as |attendeesCtx|}}
+
+                      <MealFavorButton
+                        title="Click to add attendee"
+                        @meal={{meal}}
+                        @didInsert={{set attendeesCtx "button"}}
+                        @onClick={{set attendeesCtx "popupAdd" true}}
+                      />
+                      {{#if attendeesCtx.popupAdd}}
+                        <Popup @target={{attendeesCtx.button}} @open={{true}}
+                          @didInsert={{set attendeesCtx "addPopup"}}
+                          @onClose={{set attendeesCtx "popupAdd" false}}>
+                          <ul class="c-popup-menu">
+                            <li class="c-popup-menu__heading">Add Attendee</li>
+                            {{#each this.attendees as |attendee|}}
+                              <li class="c-popup-menu__item">
+                                <button type="button" class="c-popup-menu__button"
+                                  title="Click to add attendee"
+                                  {{on "click" (queue
+                                    attendeesCtx.addPopup.close
+                                    (meal-attend date.value slot attendee)
+                                  )}}
+                                >
+                                  Add {{attendee.name}}
+                                </button>
+                              </li>
+                            {{/each}}
+                          </ul>
+                        </Popup>
+                      {{/if}}
+                      {{/let}}
+                    </span>
                   </span>
-                </span>
-                {{/let}}
-              {{/if}}
-            {{/let}}
-          {{/each}}
-        </div>
-      {{/if}}
-    {{/let}}
-  {{/each}}
+                  {{/let}}
+                {{/if}}
+              {{/let}}
+            {{/each}}
+          </div>
+        {{/if}}
+      {{/let}}
+    {{/each}}
+  </div>
+
 </div>
 {{yield}}

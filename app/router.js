@@ -7,12 +7,14 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function() {
-  this.route('meal', function() {
-    this.route('schedule', function() {
-      this.route('year', { path: '/:year' }, function() {
-        this.route('month', { path: '/:month' }, function() {
-          this.route('day', { path: '/:day' });
-        });
+  this.route('invalid', { path: '/*path'});
+  this.route('attendees');
+  this.route('meals');
+  this.route('slots');
+  this.route('schedule', function() {
+    this.route('year', { path: '/:year' }, function() {
+      this.route('month', { path: '/:month' }, function() {
+        this.route('day', { path: '/:day' });
       });
     });
   });

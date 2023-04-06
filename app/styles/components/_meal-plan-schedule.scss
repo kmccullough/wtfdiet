@@ -1,13 +1,58 @@
 @import '../functions/units';
 @import '../mixins/attendees';
 @import '../mixins/buttons';
+@import '../mixins/positioning';
 
 .c-meal-plan-schedule {
-  &__meal {
+  display: grid;
+  grid-template-rows: min-content auto;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+
+  &__header {
+    background-color: #fc8;
+    padding: .5rem 1rem;
+    border-bottom: 1px solid #d96;
+    @include clearFix;
+  }
+
+  &__heading {
+    display: inline;
+    margin: 0;
+  }
+
+  &__header-actions {
+    float: right;
+  }
+
+  &__header-action,
+  &__action {
+    @include button-colors(#000);
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+
+    &-text:not(#{&}-text--alone) {
+      display: none;
+    }
+  }
+
+  &__list {
+    overflow-y: auto;
+  }
+
+  &__date {
+    display: inline;
+  }
+
+  &__meal-day {
     padding: .5rem 1rem;
     border-bottom: 1px solid #ccc;
     overflow: hidden;
   }
+
   &__action {
     @include button-colors(#000);
     border: none;
@@ -16,14 +61,16 @@
     cursor: pointer;
     padding: 0 .2rem;
   }
-  &__date {
+
+  &__meal-day-date {
     display: inline-block;
     width: 8rem;
     text-transform: uppercase;
     font-size: .8rem;
     color: #444;
   }
-  &__date-day {
+
+  &__meal-day-date-day {
     display: inline-block;
     width: 2rem;
     font-size: 1.3rem;
@@ -31,12 +78,15 @@
     margin: 0 1rem 0 0;
     color: #000;
   }
+
   &__meal-tags {
     padding-left: 1rem;
   }
+
   &__attendees {
     float: right;
     display: flex;
     gap: 0.15rem;
   }
+
 }

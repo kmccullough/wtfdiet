@@ -7,7 +7,7 @@ export default class extends Helper {
   @inject schedule;
 
   compute(params, { array, prev, next, last }) {
-    const date = new Date(this.schedule.date.getTime());
+    const date = new Date(this.schedule.date?.getTime());
     if (prev) {
       date.setDate(date.getDate() - 1);
     } else if (next) {

@@ -3,17 +3,19 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { inject } from '@ember/service';
 
+import config from 'wtfdiet/config';
+
 function getSideParam(side) {
   return side && (side.param || side.name.toLowerCase()) || null;
 }
 
 export default class SideBarService extends Service {
 
-  sides = [
-    { name: 'Meals',     icon: 'meal-icon' },
-    { name: 'Attendees', icon: 'attendees-icon' },
-    { name: 'Slots',     icon: 'slots-icon' },
-  ];
+  sides = config.navigation
+    .filter(nav => nav.side !== false)
+    .map(nav => ({
+      ...nav,
+    }));
 
   @inject router;
 

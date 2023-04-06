@@ -1,0 +1,17 @@
+<div class="c-navigation-bar">
+  <div class="c-navigation-bar__selector">
+    {{#each this.locations as |location|}}
+      <button type="button" class="c-navigation-bar__selector-action
+        c-navigation-bar__selector-action--{{location.classAffix}}
+        {{if (is-active location.route) (concat "c-navigation-bar__selector-action--selected
+        c-navigation-bar__selector-action--" location.classAffix "--selected")}}"
+        {{on "click" (transition-to location.route)}}
+        title={{location.name}}>
+        <svg class="c-navigation-bar__selector-icon" width="24" height="24">
+          <use xlink:href="#{{location.icon}}"></use>
+        </svg>
+        <span class="c-navigation-bar__selector-text">{{location.name}}</span>
+      </button>
+    {{/each}}
+  </div>
+</div>

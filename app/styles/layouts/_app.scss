@@ -67,7 +67,11 @@
   &__content {
     display: grid;
     grid-template-columns: 1fr fit-content(368px);
-    grid-template-areas: 'main side';
+    grid-template-rows: min-content 1fr;
+    grid-template-areas:
+      'navigation side'
+      'main side'
+    ;
     overflow: hidden;
 
     &-main {
@@ -80,6 +84,32 @@
       grid-area: side;
       overflow: hidden;
       height: 100%;
+    }
+
+    &-navigation {
+      grid-area: navigation;
+      overflow: hidden;
+    }
+  }
+
+  @media screen and (max-width: $media-break___side-bar) {
+    &__content {
+      grid-template-columns: initial;
+      grid-template-rows: 1fr fit-content(368px);
+      grid-template-areas:
+        'main'
+        'navigation'
+      ;
+
+      &-main {
+      }
+
+      &-side {
+        display: none;
+      }
+
+      &-navigation {
+      }
     }
   }
 }

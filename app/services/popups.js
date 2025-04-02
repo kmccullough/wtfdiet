@@ -1,10 +1,9 @@
 import Service from '@ember/service';
 
-import { TrackedArray } from 'tracked-built-ins';
+import { tracked } from 'tracked-built-ins';
 
 export default class PopupService extends Service {
-
-  popups = new TrackedArray();
+  popups = tracked([]);
 
   has(popup) {
     return this.popups.includes(popup);
@@ -21,5 +20,4 @@ export default class PopupService extends Service {
       this.popups.pop();
     }
   }
-
 }

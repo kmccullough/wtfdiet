@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 
-function gtHelper([ ...params ]) {
+export default helper(function gtHelper([ ...params ]) {
   if (params.length <= 1) {
     return true;
   }
@@ -10,5 +10,4 @@ function gtHelper([ ...params ]) {
     value = param;
     return isGt;
   });
-}
-export default helper(gtHelper);
+});

@@ -6,11 +6,9 @@ import { inject } from '@ember/service';
  * Returns a function to assign randomized meal for given date/slot
  */
 export default class extends Helper {
-
   @inject meals;
   @inject slots;
   @inject plans;
-
   compute([ date, slot ]) {
     return () => {
       const { meals } = this.meals;
@@ -20,5 +18,4 @@ export default class extends Helper {
       this.plans.set(date, slot, slotPlan);
     };
   }
-
 }

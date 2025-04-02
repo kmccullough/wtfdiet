@@ -5,7 +5,6 @@ import { cached } from '@glimmer/tracking';
 import { LocalStorageCollection } from 'wtfdiet/utils/local-storage';
 
 export default class PlansService extends Service {
-
   slotsStore = new LocalStorageCollection('slots');
 
   add(slot) {
@@ -34,14 +33,11 @@ export default class PlansService extends Service {
     this.slotsStore.reorder(slots);
   }
 
-  @cached
-  get slots() {
+  @cached get slots() {
     return this.slotsStore.collection;
   }
 
-  @cached
-  get slotsById() {
+  @cached get slotsById() {
     return this.slotsStore.byId;
   }
-
 }

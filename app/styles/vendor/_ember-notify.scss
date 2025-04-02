@@ -1,0 +1,26 @@
+.ember-notify-default .ember-notify {
+  &.info {
+    background-color: aliceblue;
+    border-color: cornflowerblue;
+  }
+  &.success {
+    background-color: palegreen;
+    border-color: green;
+  }
+  &.warning {
+    background-color: lightgoldenrodyellow;
+    border-color: darkgoldenrod;
+  }
+  &.alert {
+    background-color: floralwhite;
+    border-color: darkorange;
+  }
+  &.error {
+    background-color: lightpink;
+    border-color: red;
+  }
+}
+
+.ember-notify-default .ember-notify .close {
+
+}

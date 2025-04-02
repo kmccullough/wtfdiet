@@ -2,14 +2,13 @@ import Route from '@ember/routing/route';
 
 import { inject } from '@ember/service';
 
-export default class MealScheduleMonthRoute extends Route {
-
+export default class MealScheduleYearRoute extends Route {
   @inject schedule;
 
-  model({ month }) {
-    this.schedule.setMonth(month);
+  model({ year }) {
+    this.schedule.setYear(year);
+    this.schedule.setMonth();
     this.schedule.setDay();
     return {};
   }
-
 }

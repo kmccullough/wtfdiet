@@ -4,9 +4,7 @@ import { getOwner } from '@ember/application';
 import { cached } from '@glimmer/tracking';
 
 export default class ModalsComponent extends Component {
-
-  @cached
-  get modal() {
+  @cached get modal() {
     const { modal } = this.args;
     if (!modal) {
       return null;
@@ -14,5 +12,4 @@ export default class ModalsComponent extends Component {
     const name = `modal/${modal.replace('.', '/')}`;
     return getOwner(this).factoryFor(`component:${name}`) && name || null;
   }
-
 }

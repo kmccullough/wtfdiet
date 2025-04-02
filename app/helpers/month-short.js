@@ -6,7 +6,6 @@ import { monthShort } from 'wtfdiet/utils/date';
  * @param {Date} date
  * @return {string}
  */
-function monthShortHelper([ date ]/*, hash*/) {
+export default helper(function monthShortHelper([ date ]/*, hash*/) {
   return monthShort(date);
-}
-export default helper(monthShortHelper);
+});

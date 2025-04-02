@@ -3,7 +3,6 @@ import Route from '@ember/routing/route';
 import { inject } from '@ember/service';
 
 export default class ApplicationRoute extends Route {
-
   @inject sideBar;
 
   queryParams = {
@@ -25,5 +24,4 @@ export default class ApplicationRoute extends Route {
       modalId: params['modal-id'],
     }
   }
-
 }

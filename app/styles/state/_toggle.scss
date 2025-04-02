@@ -1,0 +1,10 @@
+@import '../mixins/buttons';
+
+.toggle {
+  &-on {
+    @include button-colors(#000);
+  }
+  &-off {
+    @include button-colors(#444);
+  }
+}

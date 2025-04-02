@@ -5,11 +5,9 @@ import { inject } from '@ember/service';
 import { cached } from '@glimmer/tracking';
 
 export default class ColorPickerPaletteComponent extends Component {
-
   @inject attendees;
 
-  @cached
-  get attendeesByColor() {
+  @cached get attendeesByColor() {
     return new Map(
       this.attendees.attendees.map(attendee => [
         attendee.id === this.args.attendee?.id ? this.args.color : attendee.color,
@@ -18,8 +16,7 @@ export default class ColorPickerPaletteComponent extends Component {
     );
   }
 
-  @cached
-  get colors() {
+  @cached get colors() {
     const color = (title, hex) => ({
       title,
       hex,
@@ -54,13 +51,11 @@ export default class ColorPickerPaletteComponent extends Component {
     ];
   }
 
-  @action
-  onClickColor(color) {
+  @action onClickColor(color) {
     if (color.attendee && color.attendee.id !== this.args.attendee?.id) {
       alert(`That color is in use by ${color.attendee.name}. Please choose another color.`);
       return;
     }
     this.args.onPick?.(color.hex);
   }
-
 }

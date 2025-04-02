@@ -5,30 +5,25 @@ import { inject } from '@ember/service';
 import { cached } from '@glimmer/tracking';
 
 export default class PopupsComponent extends Component {
-
   @inject('popups') popupsService;
 
   _element;
 
-  @cached
-  get popups() {
+  @cached get popups() {
     return this.popupsService.popups;
   }
 
-  @action
-  didInsertPopups(element) {
+  @action didInsertPopups(element) {
     this._element = element;
     this.didUpdatePopups();
     window.addEventListener('scroll', this.updatePositions, true);
   }
 
-  @action
-  updatePositions() {
+  @action updatePositions() {
     this.popupsService.popups.forEach(p => p.updatePosition());
   }
 
-  @action
-  didUpdatePopups() {
+  @action didUpdatePopups() {
     this._element.innerHTML = '';
     this.popupsService.popups
       .forEach(p => {
@@ -37,9 +32,7 @@ export default class PopupsComponent extends Component {
       });
   }
 
-  @action
-  willDestroyPopups() {
+  @action willDestroyPopups() {
     window.removeEventListener('scroll', this.updatePositions, true);
   }
-
 }

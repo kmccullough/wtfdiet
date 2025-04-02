@@ -1,0 +1,7 @@
+{
+  "ipc-id": "wtfdiet.k0JhfWgI0SUExBcF",
+  "port": 3000,
+  "maintenance-notice-delay": 5000,
+  "session-duration-days": 2,
+  "session-duration-remember-days": 14
+}

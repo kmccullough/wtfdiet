@@ -3,9 +3,7 @@ import Helper from '@ember/component/helper';
 import { inject } from '@ember/service';
 
 export default class extends Helper {
-
   @inject schedule;
-
   compute(params, { array, prev, next, last }) {
     const date = new Date(this.schedule.date?.getTime());
     if (prev) {
@@ -18,5 +16,4 @@ export default class extends Helper {
     }
     return array ? [ date.getFullYear(), date.getMonth() + 1, date.getDate() ] : date;
   }
-
 }

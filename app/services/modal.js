@@ -3,7 +3,6 @@ import Service from '@ember/service';
 import { inject } from '@ember/service';
 
 export default class ModalService extends Service {
-
   @inject router;
 
   open(modal, modalId) {
@@ -23,5 +22,4 @@ export default class ModalService extends Service {
       }
     });
   }
-
 }

@@ -8,34 +8,28 @@ import { getElementAncestorEl } from 'wtfdiet/utils/dom';
 import { call } from 'wtfdiet/utils/function';
 
 export default class PopupComponent extends Component {
-
   @inject documentEvents;
   @inject popups;
 
-  @cached
-  get target() {
+  @cached get target() {
     return this.args.target || this.args.activator;
   }
 
-  @cached
-  get activator() {
+  @cached get activator() {
     return this.args.activator || this.args.target;
   }
 
-  @cached
-  get maskActivator() {
+  @cached get maskActivator() {
     return 'maskActivator' in this.args && !this.args.maskActivator
       ? null : this.activator;
   }
 
-  @cached
-  get maskLabel() {
+  @cached get maskLabel() {
     return 'maskLabel' in this.args && !this.args.maskLabel
       ? null : getElementAncestorEl(this.activator, 'label');
   }
 
-  @cached
-  get masked() {
+  @cached get masked() {
     return [
       ...(this.maskActivator ? [ this.maskActivator ] : []),
       ...(this.maskLabel ? [ this.maskLabel ] : []),
@@ -43,8 +37,7 @@ export default class PopupComponent extends Component {
     ];
   }
 
-  @action
-  updatePosition() {
+  @action updatePosition() {
     const bodyRect = document.body.getBoundingClientRect();
     const targetRect = this.target.getBoundingClientRect();
     // Position it top-left of view to get dimensions
@@ -65,8 +58,7 @@ export default class PopupComponent extends Component {
     ) + 'px';
   }
 
-  @action
-  open() {
+  @action open() {
     if (!this.popups.has(this)) {
       this.popups.add(this);
       this.documentEvents.mouseMask(
@@ -78,16 +70,14 @@ export default class PopupComponent extends Component {
     }
   }
 
-  @action
-  close() {
+  @action close() {
     this.args.onClose ? this.args.onClose()
       : this.popups.remove(this);
   }
 
   _element;
 
-  @action
-  didUpdateOpen() {
+  @action didUpdateOpen() {
     if (this.args.open) {
       this.open();
     } else {
@@ -95,16 +85,13 @@ export default class PopupComponent extends Component {
     }
   }
 
-  @action
-  willDestroyPopup() {
+  @action willDestroyPopup() {
     this.popups.remove(this);
   }
 
-  @action
-  didInsertPopup(el) {
+  @action didInsertPopup(el) {
     this._element = el;
     call(this.args.didInsert, null, this);
     el.remove();
   }
-
 }

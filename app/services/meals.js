@@ -6,7 +6,6 @@ import { LocalStorageCollection } from 'wtfdiet/utils/local-storage';
 import { randomize } from 'wtfdiet/utils/random';
 
 export default class MealsService extends Service {
-
   mealsStore = new LocalStorageCollection('meals');
 
   add(meal) {
@@ -32,19 +31,15 @@ export default class MealsService extends Service {
     };
   }
 
-  @cached
-  get meals() {
+  @cached get meals() {
     return this.mealsStore.collection;
   }
 
-  @cached
-  get mealsById() {
+  @cached get mealsById() {
     return this.mealsStore.byId;
   }
 
-  @cached
-  get randomMeals() {
+  @cached get randomMeals() {
     return randomize(this.meals, this.meals.length * 3);
   }
-
 }

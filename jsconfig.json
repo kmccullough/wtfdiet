@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@root": ["./"],
+      "@root/*": ["./*"],
+      "@server": ["./server"],
+      "@server/*": ["./server/*"],
+      "@models": ["./server/models"],
+      "@models/*": ["./server/models/*"],
+      "@public": ["./dist"],
+      "@public/*": ["./dist/*"]
+    }
+  }
+}

@@ -10,12 +10,11 @@ function getSideParam(side) {
 }
 
 export default class SideBarService extends Service {
-
-  sides = config.navigation
-    .filter(nav => nav.side !== false)
-    .map(nav => ({
-      ...nav,
-    }));
+  get sides() {
+    return config.navigation
+      .filter(nav => nav.side !== false)
+      .map(nav => ({ ...nav }));
+  }
 
   @inject router;
 
@@ -23,10 +22,8 @@ export default class SideBarService extends Service {
   routeQueryParams = {
     [this.sideQueryParam]: { refreshModel: true },
   };
-  controllerQueryParams = [ this.sideQueryParam ];
 
-  @tracked
-  side;
+  @tracked side;
 
   getSideByParam(param) {
     return typeof param === 'string'
@@ -67,5 +64,4 @@ export default class SideBarService extends Service {
   closeSide() {
     this.setSide();
   }
-
 }

@@ -8,7 +8,6 @@ const padStart = (value, maxLength = 2) =>
   String(value).padStart(maxLength, '0');
 
 export default class PlansService extends Service {
-
   plansStore = new LocalStorageCollection('plans');
 
   getDateKey(date) {
@@ -41,14 +40,11 @@ export default class PlansService extends Service {
     };
   }
 
-  @cached
-  get plans() {
+  @cached get plans() {
     return this.plansStore.collection;
   }
 
-  @cached
-  get plansById() {
+  @cached get plansById() {
     return this.plansStore.byId;
   }
-
 }

@@ -3,26 +3,29 @@
   "version": "0.0.0",
   "private": true,
   "description": "What the frick do I eat today?",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/kmccullough/wtfdiet"
   },
   "license": "MIT",
-  "author": "Kerry McCullough <subone@subone.org> http://subone.org/",
+  "author": "Kerry McCullough <subone@subone.org> https://subone.org/",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
   "scripts": {
     "build": "ember build --environment=production",
-    "dev": "ember serve",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel 'lint:!(fix)'",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "start": "npm run build",
+    "start": "npm-run-all build serve",
+    "start:server": "npm-run-all serve",
+    "start:client": "ember serve",
+    "serve": "node index.mjs",
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test"
   },
@@ -35,6 +38,8 @@
     "@glimmer/tracking": "^1.0.4",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
+    "dotenv": "^16.4.7",
+    "dotenv-expand": "^12.0.1",
     "ember-auto-import": "^2.4.2",
     "ember-cached-decorator-polyfill": "^0.1.3",
     "ember-cli": "~4.4.0",
@@ -54,25 +59,33 @@
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^1.0.0",
     "ember-modifier": "^3.2.7",
+    "ember-notify": "^6.0.4",
     "ember-page-title": "^7.0.0",
     "ember-qunit": "^5.1.4",
     "ember-resolver": "^8.0.2",
+    "ember-service-helper": "^0.2.1",
     "ember-sortable": "^4.0.0",
     "ember-source": "^4.5.0",
     "ember-template-lint": "^4.10.1",
     "eslint": "^8.19.0",
     "eslint-plugin-ember": "^10.6.1",
     "eslint-plugin-node": "^11.1.0",
+    "hyper-express": "^6.17.3",
+    "hyper-express-session": "^1.1.5",
+    "live-directory": "^3.0.3",
     "loader.js": "^4.7.0",
+    "node-ipc": "^12.0.0",
+    "nodemon": "^3.1.9",
     "npm-run-all": "^4.1.5",
     "qunit": "^2.14.1",
     "qunit-dom": "^2.0.0",
     "sass": "^1.35.1",
     "tracked-built-ins": "^3.1.0",
-    "webpack": "^5.73.0"
+    "webpack": "^5.97.1"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
   },
   "ember": {
     "edition": "octane"

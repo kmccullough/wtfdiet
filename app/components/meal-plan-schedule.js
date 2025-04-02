@@ -5,41 +5,33 @@ import { inject } from '@ember/service';
 import { cached } from '@glimmer/tracking';
 
 export default class MealPlanScheduleComponent extends Component {
-
   @inject('attendees') attendeeService;
   @inject('meals') mealService;
   @inject('plans') planService;
   @inject('slots') slotService;
   @inject popups;
 
-  @cached
-  get attendees() {
+  @cached get attendees() {
     return this.attendeeService.attendees;
   }
 
-  @cached
-  get attendeesById() {
+  @cached get attendeesById() {
     return this.attendeeService.attendeesById;
   }
 
-  @cached
-  get slots() {
+  @cached get slots() {
     return this.slotService.slots;
   }
 
-  @cached
-  get mealsById() {
+  @cached get mealsById() {
     return this.mealService.mealsById;
   }
 
-  @cached
-  get plansById() {
+  @cached get plansById() {
     return this.planService.plansById;
   }
 
-  @action
-  addAnAttendee(date, attendee) {
+  @action addAnAttendee(date, attendee) {
     console.log('addAnAttendee', date, attendee);
   }
-
 }

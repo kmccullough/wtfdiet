@@ -5,7 +5,6 @@ import { cached } from '@glimmer/tracking';
 import { LocalStorageCollection } from 'wtfdiet/utils/local-storage';
 
 export default class AttendeesService extends Service {
-
   attendeesStore = new LocalStorageCollection('attendees');
 
   add(attendee) {
@@ -17,7 +16,7 @@ export default class AttendeesService extends Service {
   }
 
   update(attendee) {
-    if (!attendee || !attendee.id) {
+    if (!attendee?.id) {
       return;
     }
     this.attendeesStore.update(attendee.id, attendee);
@@ -31,14 +30,11 @@ export default class AttendeesService extends Service {
     };
   }
 
-  @cached
-  get attendees() {
+  @cached get attendees() {
     return this.attendeesStore.collection;
   }
 
-  @cached
-  get attendeesById() {
+  @cached get attendeesById() {
     return this.attendeesStore.byId;
   }
-
 }

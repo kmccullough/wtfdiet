@@ -6,7 +6,6 @@ import { isAnyElDescendentOfAnyEl } from 'wtfdiet/utils/dom';
 import { call } from 'wtfdiet/utils/function';
 
 export default class DocumentEventsService extends Service {
-
   mouseMasks = [];
 
   mouseMask(elements, callback) {
@@ -30,22 +29,19 @@ export default class DocumentEventsService extends Service {
     document.addEventListener('click', this.clickHandler, true);
   }
 
-  @action
-  mouseDownHandler(e) {
+  @action mouseDownHandler(e) {
     if (!this.mouseMaskHandlerHard(e)) {
       return;
     }
   }
 
-  @action
-  mouseUpHandler(e) {
+  @action mouseUpHandler(e) {
     if (!this.mouseMaskHandlerSoft(e)) {
       return;
     }
   }
 
-  @action
-  clickHandler(e) {
+  @action clickHandler(e) {
     if (!this.mouseMaskHandlerSoft(e)) {
       return;
     }
@@ -83,5 +79,4 @@ export default class DocumentEventsService extends Service {
     }
     return isAllowedElement;
   }
-
 }

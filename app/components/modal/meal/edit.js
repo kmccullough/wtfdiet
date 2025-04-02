@@ -4,7 +4,6 @@ import { action } from '@ember/object';
 import { inject } from '@ember/service';
 
 export default class ModalMealEditComponent extends Component {
-
   @inject('meals') mealService;
   @inject modal;
 
@@ -20,19 +19,16 @@ export default class ModalMealEditComponent extends Component {
     this.meal = this.mealService.copy(this.editMeal);
   }
 
-  @action
-  deleteMeal() {
+  @action deleteMeal() {
     this.mealService.delete(this.editMeal);
     this.modal.close();
   }
 
-  @action
-  updateMeal() {
+  @action updateMeal() {
     this.mealService.update({
       ...this.editMeal,
       ...this.meal,
     });
     this.modal.close();
   }
-
 }

@@ -6,16 +6,13 @@ import { inject } from '@ember/service';
 import { cached } from '@glimmer/tracking';
 
 export default class SideBarComponent extends Component {
-
   @inject sideBar;
 
-  @cached
-  get side() {
+  @cached get side() {
     return this.sideBar.side;
   }
 
-  @cached
-  get sides() {
+  @cached get sides() {
     return this.sideBar.sides.map(side => ({
       classAffix: side.name.toLowerCase(),
       selected: side === this.side,
@@ -23,8 +20,7 @@ export default class SideBarComponent extends Component {
     }));
   }
 
-  @cached
-  get sideComponent() {
+  @cached get sideComponent() {
     if (!this.side) {
       return null;
     }
@@ -33,14 +29,11 @@ export default class SideBarComponent extends Component {
     return getOwner(this).factoryFor(`component:${name}`) && name || null;
   }
 
-  @action
-  toggleSide(side) {
+  @action toggleSide(side) {
     this.sideBar.toggleSide(side);
   }
 
-  @action
-  closeSide() {
+  @action closeSide() {
     this.sideBar.closeSide();
   }
-
 }

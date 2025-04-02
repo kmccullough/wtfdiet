@@ -5,7 +5,6 @@ import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 export default class ColorButtonComponent extends Component {
-
   @inject popups;
 
   @tracked color;
@@ -18,23 +17,19 @@ export default class ColorButtonComponent extends Component {
     this.didUpdateColor();
   }
 
-  @action
-  didInsertButton(el) {
+  @action didInsertButton(el) {
     this.button = el;
   }
 
-  @action
-  didUpdateColor() {
+  @action didUpdateColor() {
     this.color = this.args.color;
   }
 
-  @action
-  onClick() {
+  @action onClick() {
     this.popup.open();
   }
 
-  @action
-  didInsertPopup(popup) {
+  @action didInsertPopup(popup) {
     this.popup = popup;
   }
 
@@ -44,14 +39,11 @@ export default class ColorButtonComponent extends Component {
     this.popups.remove(this.popup);
   }
 
-  @action
-  onPickPaletteColor(color) {
+  @action onPickPaletteColor(color) {
     this.pickColor(color);
   }
 
-  @action
-  onPickCustomColor(color) {
+  @action onPickCustomColor(color) {
     this.pickColor(color);
   }
-
 }

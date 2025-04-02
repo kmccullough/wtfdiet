@@ -1,12 +1,11 @@
 import Component from '@glimmer/component';
 
-import config from 'wtfdiet/config';
 import { cached } from '@glimmer/tracking';
 
-export default class IconComponent extends Component {
+import config from 'wtfdiet/config';
 
-  @cached
-  get config() {
+export default class IconComponent extends Component {
+  @cached get config() {
     const classModifier = this.args.icon;
     let icon = config.icons[this.args.icon];
     let rotate = this.args.rotate;
@@ -20,5 +19,4 @@ export default class IconComponent extends Component {
     }
     return { icon, rotate, classModifier };
   }
-
 }

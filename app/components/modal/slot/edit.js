@@ -4,7 +4,6 @@ import { action } from '@ember/object';
 import { inject } from '@ember/service';
 
 export default class ModalSlotEditComponent extends Component {
-
   @inject('slots') slotService;
   @inject modal;
 
@@ -20,19 +19,16 @@ export default class ModalSlotEditComponent extends Component {
     this.slot = this.slotService.copy(this.editSlot);
   }
 
-  @action
-  deleteSlot() {
+  @action deleteSlot() {
     this.slotService.delete(this.editSlot);
     this.modal.close();
   }
 
-  @action
-  updateSlot() {
+  @action updateSlot() {
     this.slotService.update({
       ...this.editSlot,
       ...this.slot,
     });
     this.modal.close();
   }
-
 }

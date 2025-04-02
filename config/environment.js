@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'wtfdiet',
+    podModulePrefix: 'wtfdiet/routes',
     environment,
     rootURL: '/',
     locationType: 'history',
